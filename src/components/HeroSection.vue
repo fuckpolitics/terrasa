@@ -1,7 +1,7 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
 
-const heroImg = 'https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=2400&q=80'
+const heroImg = '/images/terrasa/hero.webp'
 
 function scrollToBooking() {
   document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })
@@ -22,7 +22,7 @@ function scrollToMenu() {
 
       <h1 class="hero__title display">
         <span class="split-line">
-          <span class="split-line__inner" :style="{ '--d': '0.05s' }">Терраса —</span>
+          <span class="split-line__inner" :style="{ '--d': '0.05s' }">ТЕРРАСА —</span>
         </span>
         <span class="split-line">
           <span class="split-line__inner" :style="{ '--d': '0.18s' }">
@@ -39,10 +39,9 @@ function scrollToMenu() {
 
       <div class="hero__bottom">
         <p class="hero__lead reveal reveal--delay-2">
-          Мы&nbsp;только что открыли двери в&nbsp;историческом здании
-          Ивановского драмтеатра&nbsp;— и&nbsp;приглашаем вас на&nbsp;первый акт.
-          Сезонная кухня, винная карта от&nbsp;сомелье и&nbsp;тишина, в&nbsp;которой
-          слышно сам&nbsp;вечер.
+          «ТЕРРАСА»&nbsp;— это не&nbsp;просто ресторан. Это место в&nbsp;самом
+          сердце города, куда приходят не&nbsp;поесть, а&nbsp;прожить вечер.
+          Атмосфера, пространство, ощущение&nbsp;— вот настоящий продукт.
         </p>
 
         <div class="hero__cta reveal reveal--delay-3">
@@ -61,12 +60,12 @@ function scrollToMenu() {
             <span class="hero__meta-label">премьера<br />сезона</span>
           </div>
           <div class="hero__meta-item">
-            <span class="hero__meta-num">120</span>
-            <span class="hero__meta-label">позиций<br />в&nbsp;винной карте</span>
+            <span class="hero__meta-num">3</span>
+            <span class="hero__meta-label">блюда<br />от&nbsp;шефа</span>
           </div>
           <div class="hero__meta-item">
-            <span class="hero__meta-num">9</span>
-            <span class="hero__meta-label">шеф-сетов<br />на&nbsp;открытие</span>
+            <span class="hero__meta-num">80</span>
+            <span class="hero__meta-label">персон<br />для&nbsp;закрытых событий</span>
           </div>
         </div>
       </div>
@@ -83,6 +82,7 @@ function scrollToMenu() {
 .hero {
   padding-top: 0;
   padding-bottom: 0;
+  min-height: 100vh;
   min-height: 100dvh;
 }
 
@@ -90,6 +90,7 @@ function scrollToMenu() {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  min-height: 100vh;
   min-height: 100dvh;
   padding-top: clamp(140px, 18vh, 220px);
   padding-bottom: clamp(60px, 8vh, 120px);
@@ -201,7 +202,10 @@ function scrollToMenu() {
 .hero__scroll-line::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(90deg, var(--accent), transparent);
   animation: scroll-pulse 2.4s var(--ease) infinite;
 }

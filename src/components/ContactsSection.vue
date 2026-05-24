@@ -1,7 +1,7 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
 
-const bg = 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=format&fit=crop&w=2400&q=80'
+const bg = '/images/terrasa/contacts-bg.webp'
 </script>
 
 <template>
@@ -24,17 +24,18 @@ const bg = 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=fo
             пл.&nbsp;Пушкина,&nbsp;2<br />
             <span class="contacts__card-hint">здание драмтеатра</span>
           </p>
-          <a class="contacts__card-link" href="https://yandex.ru/maps/?text=Иваново+площадь+Пушкина+драмтеатр" target="_blank" rel="noopener">
+          <a class="contacts__card-link" href="https://yandex.ru/maps/?text=Иваново+ресторан+ТЕРРАСА+площадь+Пушкина+2" target="_blank" rel="noopener">
             Открыть на&nbsp;карте <span class="arrow">→</span>
           </a>
         </div>
 
         <div class="contacts__card reveal reveal--delay-1">
-          <span class="contacts__card-eyebrow">Телефон</span>
+          <span class="contacts__card-eyebrow">Телефоны</span>
           <p class="contacts__card-value">
-            <a href="tel:+74932000000">+7 (4932) 00-00-00</a>
+            <a href="tel:+79060699118">+7 (906) 069-91-18</a><br />
+            <a href="tel:+79060699107">+7 (906) 069-91-07</a>
           </p>
-          <a class="contacts__card-link" href="https://wa.me/74932000000" target="_blank" rel="noopener">
+          <a class="contacts__card-link" href="https://wa.me/79060699118" target="_blank" rel="noopener">
             Написать в&nbsp;WhatsApp <span class="arrow">→</span>
           </a>
         </div>
@@ -42,9 +43,8 @@ const bg = 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=fo
         <div class="contacts__card reveal reveal--delay-2">
           <span class="contacts__card-eyebrow">Часы работы</span>
           <p class="contacts__card-value">
-            Пн–Чт&nbsp;· 12:00–23:00<br />
-            Пт–Сб&nbsp;· 12:00–01:00<br />
-            Вс&nbsp;· 12:00–23:00
+            Ежедневно<br />
+            12:00–00:00
           </p>
           <a class="contacts__card-link" href="#booking" @click.prevent="$emit('book')">
             Забронировать <span class="arrow">→</span>
@@ -54,9 +54,9 @@ const bg = 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=fo
         <div class="contacts__card reveal reveal--delay-3">
           <span class="contacts__card-eyebrow">Почта</span>
           <p class="contacts__card-value">
-            <a href="mailto:hello@terrasa-ivanovo.ru">hello@terrasa-ivanovo.ru</a>
+            <a href="mailto:zastol2026@yandex.ru">zastol2026@yandex.ru</a>
           </p>
-          <a class="contacts__card-link" href="mailto:events@terrasa-ivanovo.ru">
+          <a class="contacts__card-link" href="mailto:zastol2026@yandex.ru">
             События и&nbsp;банкеты <span class="arrow">→</span>
           </a>
         </div>
@@ -66,13 +66,13 @@ const bg = 'https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?auto=fo
         <div class="contacts__map-frame">
           <iframe
             title="Карта"
-            src="https://yandex.ru/map-widget/v1/?ll=40.984000%2C56.998200&z=15&pt=40.984000,56.998200,pm2rdm"
+            src="https://yandex.ru/map-widget/v1/?text=Иваново%20ресторан%20ТЕРРАСА%20площадь%20Пушкина%202&z=17"
             loading="lazy"
             allowfullscreen
           ></iframe>
         </div>
         <div class="contacts__map-pill">
-          <span class="contacts__map-pill-label">Терраса</span>
+          <span class="contacts__map-pill-label">ТЕРРАСА</span>
           <p>В&nbsp;здании Ивановского драмтеатра.</p>
         </div>
       </div>

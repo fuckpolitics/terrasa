@@ -42,7 +42,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
       <a href="#top" class="nav__brand" @click.prevent="go('top')">
         <span class="nav__mark">T</span>
         <span class="nav__name">
-          <span class="nav__name-main">Терраса</span>
+          <span class="nav__name-main">ТЕРРАСА</span>
           <span class="nav__name-sub">Ivanovo · Драмтеатр</span>
         </span>
       </a>
@@ -60,7 +60,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
       </nav>
 
       <div class="nav__actions">
-        <a class="nav__phone" href="tel:+74932000000">+7 (4932) 00-00-00</a>
+        <a class="nav__phone" href="tel:+79060699118">+7 (906) 069-91-18</a>
         <button class="btn btn--small" @click="book">
           Забронировать
           <span class="arrow">→</span>
@@ -90,7 +90,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
         </a>
       </nav>
       <div class="nav__mobile-foot">
-        <a href="tel:+74932000000">+7 (4932) 00-00-00</a>
+        <a href="tel:+79060699118">+7 (906) 069-91-18</a>
         <button class="btn" @click="book">Забронировать стол</button>
       </div>
     </div>

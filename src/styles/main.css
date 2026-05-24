@@ -9,7 +9,7 @@
   --line: rgba(253, 248, 238, 0.22);
   --line-strong: rgba(253, 248, 238, 0.42);
 
-  --serif: 'Cormorant Garamond', 'Times New Roman', serif;
+  --serif: 'Arno Pro', 'ArnoPro', 'Cormorant Garamond', 'Times New Roman', serif;
   --sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
 
   --container: 1280px;
@@ -47,6 +47,7 @@ html {
 }
 
 body {
+  min-height: 100vh;
   min-height: 100dvh;
 }
 
@@ -155,6 +156,7 @@ p {
 }
 
 .section--full {
+  min-height: 100vh;
   min-height: 100dvh;
   display: flex;
   align-items: center;
@@ -162,7 +164,10 @@ p {
 
 .bg-layer {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
@@ -170,7 +175,10 @@ p {
 
 .bg-layer__image {
   position: absolute;
-  inset: -10% -2% -10% -2%;
+  top: -10%;
+  right: -2%;
+  bottom: -10%;
+  left: -2%;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -180,14 +188,20 @@ p {
 
 .bg-layer__overlay {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background:
     linear-gradient(180deg, rgba(14, 13, 11, 0.55) 0%, rgba(14, 13, 11, 0.6) 60%, rgba(14, 13, 11, 0.92) 100%);
 }
 
 .bg-layer__grain {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   opacity: 0.06;
   mix-blend-mode: overlay;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.7 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
@@ -225,7 +239,10 @@ p {
 .btn::before {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: var(--bg);
   transform: scaleX(0);
   transform-origin: right;

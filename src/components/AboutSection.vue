@@ -1,8 +1,8 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
 
-const aboutImg = 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2400&q=80'
-const sideImg = 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=format&fit=crop&w=1400&q=80'
+const aboutImg = '/images/terrasa/about-bg.webp'
+const sideImg = '/images/terrasa/about-side.webp'
 </script>
 
 <template>
@@ -14,29 +14,27 @@ const sideImg = 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=
         <span class="eyebrow reveal">О ресторане</span>
 
         <h2 class="section-title reveal reveal--delay-1">
-          Место, где<br />
-          <em>начинается вечер</em>
+          О ресторане<br />
+          <em>ТЕРРАСА</em>
         </h2>
 
         <div class="about__copy reveal reveal--delay-2 muted">
           <p>
-            «Терраса» открылась в&nbsp;2026&nbsp;году в&nbsp;историческом здании
-            Ивановского областного драматического театра&nbsp;— как продолжение
-            самого театра, только за&nbsp;столом. Сюда приходят до&nbsp;спектакля,
-            после спектакля и&nbsp;вместо спектакля.
+            «ТЕРРАСА»&nbsp;— это не&nbsp;просто ресторан. Это место в&nbsp;самом
+            сердце города, куда приходят не&nbsp;поесть, а&nbsp;прожить вечер.
+            Атмосфера, пространство, ощущение&nbsp;— вот настоящий продукт.
           </p>
           <p>
-            Мы&nbsp;работаем с&nbsp;локальными фермерами Ивановской области,
-            привозим вино из&nbsp;винодельческих регионов России, Италии и&nbsp;Грузии,
-            а&nbsp;каждый сезон полностью переписываем меню заново.
+            Меню живёт вместе с&nbsp;сезоном: каждый сезон мы&nbsp;обновляем
+            основные блюда, сохраняя любимые позиции и&nbsp;общий характер кухни.
           </p>
         </div>
 
         <ul class="about__list reveal reveal--delay-3">
-          <li><span>01</span>Ужин по&nbsp;будням до&nbsp;23:00, по&nbsp;выходным до&nbsp;01:00</li>
-          <li><span>02</span>Закрытый зал на&nbsp;28&nbsp;персон для частных вечеров</li>
-          <li><span>03</span>Сомелье и&nbsp;шеф-повар лично сопровождают гостей</li>
-          <li><span>04</span>Театральное меню за&nbsp;90&nbsp;минут до&nbsp;спектакля</li>
+          <li><span>01</span>Работаем ежедневно с&nbsp;12:00 до&nbsp;00:00</li>
+          <li><span>02</span>Закрытые мероприятия до&nbsp;80&nbsp;персон</li>
+          <li><span>03</span>Сезонные обновления основных блюд</li>
+          <li><span>04</span>Главный зал, терраса и&nbsp;банкетное пространство</li>
         </ul>
       </div>
 
@@ -47,10 +45,10 @@ const sideImg = 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=
         <div class="about__quote">
           <span class="ornament">премьера&nbsp;2026</span>
           <p>
-            «Хороший ресторан&nbsp;— это не&nbsp;только тарелка.
-            Это вечер, который вы&nbsp;запомните дольше, чем меню».
+            «ТЕРРАСА»&nbsp;— это вечер, который вы&nbsp;запомните
+            не&nbsp;меньше, чем вкус любимого блюда.
           </p>
-          <span class="about__quote-author">— Команда «Террасы»</span>
+          <span class="about__quote-author">— Команда «ТЕРРАСЫ»</span>
         </div>
       </div>
     </div>
@@ -136,7 +134,10 @@ const sideImg = 'https://images.unsplash.com/photo-1559925393-8be0ec4767c8?auto=
 
 .about__photo-frame {
   position: absolute;
-  inset: 14px;
+  top: 14px;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
   border: 1px solid rgba(244, 236, 224, 0.18);
   pointer-events: none;
 }

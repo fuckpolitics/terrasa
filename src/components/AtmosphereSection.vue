@@ -1,29 +1,29 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
 
-const bg = 'https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=2400&q=80'
+const bg = '/images/terrasa/atmosphere-bg.webp'
 
 const tiles = [
   {
-    img: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?auto=format&fit=crop&w=1400&q=80',
+    img: '/images/terrasa/atmosphere-main.webp',
     title: 'Главный зал',
-    text: 'Тёплый свет, дубовые столы, открытая кухня и&nbsp;вид во&nbsp;внутренний двор.',
+    text: 'Пространство для ужинов, встреч и&nbsp;долгих вечеров в&nbsp;сердце города.',
     span: 'large',
   },
   {
-    img: 'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=1200&q=80',
-    title: 'Бар',
-    text: 'Авторские коктейли и&nbsp;500&nbsp;позиций крепкого алкоголя.',
+    img: '/images/terrasa/atmosphere-terrace.webp',
+    title: 'ТЕРРАСА',
+    text: 'Воздух, город и&nbsp;ощущение вечера, который хочется продлить.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1592861956120-e524fc739696?auto=format&fit=crop&w=1200&q=80',
-    title: 'Винный погреб',
-    text: 'Камерный зал на&nbsp;8&nbsp;персон для дегустаций.',
+    img: '/images/terrasa/atmosphere-banquet.webp',
+    title: 'Банкетное пространство',
+    text: 'Отдельная зона для свадеб, корпоративов и&nbsp;закрытых мероприятий.',
   },
   {
-    img: 'https://images.unsplash.com/photo-1530062845289-9109b2c9c868?auto=format&fit=crop&w=1400&q=80',
-    title: 'Терраса',
-    text: 'Открытая веранда с&nbsp;мая по&nbsp;сентябрь, 40&nbsp;посадочных мест.',
+    img: '/images/terrasa/atmosphere-music.webp',
+    title: 'Музыкальный уголок',
+    text: 'Место для живой музыки, камерных вечеров и&nbsp;анонсов сезона.',
     span: 'wide',
   },
 ]
@@ -103,13 +103,19 @@ const tiles = [
 
 .tile__media {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   overflow: hidden;
 }
 
 .tile__image {
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-size: cover;
   background-position: center;
   transition: transform 1.2s var(--ease), filter 0.6s var(--ease);
@@ -124,7 +130,10 @@ const tiles = [
 .tile::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background: linear-gradient(180deg, rgba(14, 13, 11, 0.05) 0%, rgba(14, 13, 11, 0.85) 100%);
   z-index: 1;
 }

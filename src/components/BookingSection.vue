@@ -2,7 +2,7 @@
 import { ref, reactive, computed } from 'vue'
 import ParallaxBg from './ParallaxBg.vue'
 
-const bg = 'https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?auto=format&fit=crop&w=2400&q=80'
+const bg = '/images/terrasa/booking-bg.webp'
 
 const today = new Date().toISOString().slice(0, 10)
 const form = reactive({
@@ -20,8 +20,8 @@ const sending = ref(false)
 const error = ref('')
 
 const guestsOptions = [1, 2, 3, 4, 5, 6, 7, 8, '8+']
-const timeSlots = ['12:00', '13:30', '15:00', '17:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00']
-const occasions = ['Просто ужин', 'Свидание', 'День рождения', 'Деловая встреча', 'Годовщина']
+const timeSlots = ['12:00', '13:30', '15:00', '17:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30', '23:00']
+const occasions = ['Просто ужин', 'Свидание', 'День рождения', 'Свадьба', 'Корпоратив', 'Банкет']
 
 const isValid = computed(
   () => form.name.trim().length >= 2 && /\+?[\d\s\-()]{10,}/.test(form.phone),
@@ -61,13 +61,13 @@ function reset() {
         <p class="reveal reveal--delay-2 muted booking__lead">
           Заполните форму&nbsp;— и&nbsp;администратор перезвонит в&nbsp;течение
           15&nbsp;минут, подтвердит детали и&nbsp;предложит самое подходящее место.
-          В&nbsp;пятницу и&nbsp;субботу мы&nbsp;рекомендуем бронировать стол
-          минимум за&nbsp;двое суток.
+          Для банкетов на&nbsp;30–80&nbsp;человек мы&nbsp;заранее согласуем формат,
+          меню и&nbsp;рассадку.
         </p>
 
         <ul class="booking__features reveal reveal--delay-3">
-          <li>Без предоплаты — гарантия только&nbsp;по&nbsp;звонку</li>
-          <li>Депозит для столов от&nbsp;6&nbsp;персон обсуждается отдельно</li>
+          <li>Бронирование столов и&nbsp;заявки на&nbsp;банкет в&nbsp;одной форме</li>
+          <li>Закрытые мероприятия до&nbsp;80&nbsp;персон обсуждаются отдельно</li>
           <li>Любые предпочтения по&nbsp;меню&nbsp;— заранее, мы&nbsp;учтём</li>
         </ul>
       </div>

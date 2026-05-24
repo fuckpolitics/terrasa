@@ -2,49 +2,97 @@
 import { ref, computed } from 'vue'
 import ParallaxBg from './ParallaxBg.vue'
 
-const menuImg = 'https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=2400&q=80'
+const menuImg = '/images/terrasa/menu-bg.webp'
 
 const tabs = [
-  { id: 'starters', label: 'Закуски' },
+  { id: 'coldStarters', label: 'Холодные закуски' },
+  { id: 'hotStarters', label: 'Горячие закуски' },
+  { id: 'salads', label: 'Салаты' },
+  { id: 'soups', label: 'Супы' },
   { id: 'mains', label: 'Горячее' },
+  { id: 'sides', label: 'Гарниры' },
   { id: 'desserts', label: 'Десерты' },
-  { id: 'wine', label: 'Винная карта' },
+  { id: 'pies', label: 'Пироги' },
+  { id: 'kids', label: 'Детское меню' },
 ]
 
 const data = {
-  starters: [
-    { name: 'Тартар из говядины', desc: 'Выдержанная говядина, желток, каперсы, тост из&nbsp;закваски', price: '890' },
-    { name: 'Севиче из дорадо', desc: 'Цитрусовый маринад, авокадо, манго, перец халапеньо', price: '1 240' },
-    { name: 'Татаки из тунца', desc: 'Кунжут, понзу, маринованный имбирь, кинза', price: '1 380' },
-    { name: 'Ивановская свёкла', desc: 'Печёная свёкла, козий сыр, грецкий орех, бальзамик', price: '640' },
+  coldStarters: [
+    { name: 'Ассорти мясное', desc: 'Выход: 103&nbsp;г', price: '790' },
+    { name: 'Ассорти сырное', desc: 'Выход: 160&nbsp;г', price: '750' },
+    { name: 'Ассорти рыбное', desc: 'Выход: 95&nbsp;г', price: '850' },
+    { name: 'Брускета с прошутто и томатами', desc: 'Выход: 70&nbsp;г', price: '240' },
+    { name: 'Канноли с утиным паштетом', desc: 'Выход: 210&nbsp;г', price: '450' },
+    { name: 'Севиче из морепродуктов', desc: 'Выход: 160&nbsp;г', price: '950' },
+    { name: 'Овощное крудите', desc: 'Выход: 250&nbsp;г', price: '650' },
+    { name: 'Разносолы', desc: 'Выход: 300&nbsp;г', price: '750' },
+  ],
+  hotStarters: [
+    { name: 'Тортилья с рваной говядиной и сулугуни', desc: 'Выход: 240 / 60&nbsp;г', price: '750' },
+    { name: 'Хрустящие креветки васаби', desc: 'Выход: 100 / 60&nbsp;г', price: '750' },
+  ],
+  salads: [
+    { name: 'Оливье с уткой и копченым куриным филе', desc: 'Выход: 230&nbsp;г', price: '550' },
+    { name: 'Салат греческий с печеным перцем', desc: 'Выход: 220&nbsp;г', price: '550' },
+    { name: 'Салат с кальмаром лолиго, креветками и рукколой', desc: 'Выход: 240&nbsp;г', price: '950' },
+    { name: 'Салат с копченым перепелиным яйцом и жареным беконом', desc: 'Выход: 210&nbsp;г', price: '600' },
+    { name: 'Салат с хрустящими баклажанами, творожным сыром и азиатским соусом', desc: 'Выход: 220&nbsp;г', price: '550' },
+    { name: 'Тар-тар из телячьей вырезки с грибным дюкселем, пудрой из пармезана и черным трюфелем', desc: 'Выход: 170&nbsp;г', price: '1 300' },
+  ],
+  soups: [
+    { name: 'Борщ с телятиной, чесночной гренкой, салом и сметаной', desc: 'Выход: 300 / 50 / 25&nbsp;г', price: '550' },
+    { name: 'Окрошка на квасе с пастрами', desc: 'Выход: 300&nbsp;г', price: '600' },
+    { name: 'Суп-крем капучино из белых грибов', desc: 'Выход: 250&nbsp;г', price: '600' },
+    { name: 'Уха из лосося', desc: 'Выход: 300&nbsp;г', price: '750' },
   ],
   mains: [
-    { name: 'Каре ягнёнка', desc: 'Розмарин, тыквенное пюре, демиглас на&nbsp;красном вине', price: '2 480' },
-    { name: 'Сибас на угле', desc: 'Цельный сибас, лимонное масло, цукини на&nbsp;гриле', price: '1 980' },
-    { name: 'Ризотто с белыми грибами', desc: 'Карнароли, пармезан 24&nbsp;месяца, трюфельное масло', price: '1 480' },
-    { name: 'Утиная грудка', desc: 'Соус из&nbsp;вишни, картофель фондан, лук-шалот', price: '1 740' },
+    { name: 'Лингвини с креветками том-ям', desc: 'Выход: 310&nbsp;г', price: '950' },
+    { name: 'Лосось со спаржей в фисташковой панировке с соусом беарнез', desc: 'Выход: 100 / 60 / 60&nbsp;г', price: '1 450' },
+    { name: 'Ризотто с белыми грибами и зеленым горошком', desc: 'Выход: 300&nbsp;г', price: '950' },
+    { name: 'Телячьи щечки с пюре из запеченного картофеля, грибами и вялеными томатами', desc: 'Выход: 120 / 140 / 60 / 5 / 20&nbsp;г', price: '950' },
+    { name: 'Утиное филе с карамелизированной тыквой и клюквенно-брусничным соусом', desc: 'Выход: 120 / 40 / 40&nbsp;г', price: '890' },
+    { name: 'Филе миньон с овощами и соусом чими-чури', desc: 'Выход: 160 / 90 / 50&nbsp;г', price: '1 500' },
+  ],
+  sides: [
+    { name: 'Хлебная корзинка', desc: 'Выход: 160&nbsp;г', price: '120' },
+    { name: 'Пирожковая тарелка 6 шт.', desc: 'Выход: 240&nbsp;г', price: '350' },
   ],
   desserts: [
-    { name: 'Павлова с маракуйей', desc: 'Хрустящее безе, маскарпоне, тропические фрукты', price: '620' },
-    { name: 'Шоколадный фондан', desc: 'Тёмный шоколад 70&nbsp;%, мороженое с&nbsp;солёной карамелью', price: '680' },
-    { name: 'Тарт татен', desc: 'Карамелизованные яблоки, песочное тесто, ваниль Бурбон', price: '590' },
-    { name: 'Чизкейк New York', desc: 'Сливочный сыр, малиновый кулис, базилик', price: '560' },
+    { name: 'Анна Павлова', desc: 'Выход: 120&nbsp;г', price: '450' },
+    { name: 'Манго маракуйя', desc: 'Выход: 140&nbsp;г', price: '480' },
+    { name: 'Таежный десерт с брусникой, клюквой и сливочной эспумой', desc: 'Выход: 140&nbsp;г', price: '450' },
+    { name: 'Трайфл Наполеон', desc: 'Выход: 150&nbsp;г', price: '400' },
+    { name: 'Мороженое', desc: 'Выход: 100&nbsp;г', price: '220' },
+    { name: 'Фруктовая тарелка', desc: 'Выход: 1000&nbsp;г', price: '2 500' },
+    { name: 'Фондан', desc: 'Выход уточняется', price: '' },
   ],
-  wine: [
-    { name: 'Brut Nature, Кубань', desc: 'Россия · игристое · сухое · бокал/бутылка', price: '480 / 2 800' },
-    { name: 'Saperavi Reserve', desc: 'Грузия · красное · сухое · бокал/бутылка', price: '620 / 3 400' },
-    { name: 'Chianti Classico', desc: 'Италия · красное · сухое · бокал/бутылка', price: '780 / 4 600' },
-    { name: 'Sancerre', desc: 'Франция · белое · сухое · бокал/бутылка', price: '860 / 5 200' },
+  pies: [
+    { name: 'С мясом', desc: 'Пироги на заказ', price: '' },
+    { name: 'С картофелем', desc: 'Пироги на заказ', price: '' },
+    { name: 'С капустой', desc: 'Пироги на заказ', price: '' },
+    { name: 'С яйцом и луком', desc: 'Пироги на заказ', price: '' },
+    { name: 'С яблоками', desc: 'Пироги на заказ', price: '' },
+  ],
+  kids: [
+    { name: 'Суп с азбукой', desc: 'Выход: 250&nbsp;г', price: '250' },
+    { name: 'Котлетки куриные с картофельным пюре', desc: 'Выход: 100 / 150&nbsp;г', price: '350' },
+    { name: 'Бабушкина пицца', desc: 'Выход: 120&nbsp;г', price: '250' },
+    { name: 'Мороженое с наполнителем на выбор', desc: 'Выход: 100&nbsp;г', price: '220' },
+    { name: 'Молочный коктейль', desc: 'Выход: 250&nbsp;г', price: '250' },
   ],
 }
 
-const active = ref('starters')
+const active = ref('coldStarters')
 const items = computed(() => data[active.value])
+
+function formatPrice(price) {
+  return price ? `${price} ₽` : 'уточняйте'
+}
 </script>
 
 <template>
   <section id="menu" class="section menu">
-    <ParallaxBg :src="menuImg" :speed="0.18" overlay="default" />
+    <ParallaxBg :src="menuImg" :speed="0" overlay="default" />
 
     <div class="container section-inner">
       <header class="menu__head">
@@ -53,9 +101,9 @@ const items = computed(() => data[active.value])
           Кухня, которая<br /><em>знает меру</em>
         </h2>
         <p class="reveal reveal--delay-2 muted menu__intro">
-          Шесть месяцев в&nbsp;году, четыре подачи в&nbsp;день, один принцип&nbsp;—
-          чистый вкус продукта. Ниже — самые частые гости в&nbsp;заказах
-          текущего сезона.
+          В&nbsp;основе&nbsp;— блюда текущего сезона и&nbsp;любимые позиции,
+          к&nbsp;которым гости возвращаются снова. Каждый сезон мы&nbsp;обновляем
+          основные блюда, но&nbsp;не&nbsp;переписываем меню полностью.
         </p>
       </header>
 
@@ -81,7 +129,7 @@ const items = computed(() => data[active.value])
           <div class="menu__item-row">
             <h3 class="menu__item-name">{{ item.name }}</h3>
             <span class="menu__item-dots"></span>
-            <span class="menu__item-price">{{ item.price }}&nbsp;₽</span>
+            <span class="menu__item-price">{{ formatPrice(item.price) }}</span>
           </div>
           <p class="menu__item-desc" v-html="item.desc"></p>
         </li>
@@ -90,7 +138,7 @@ const items = computed(() => data[active.value])
       <div class="menu__foot reveal">
         <p class="muted">
           Полное меню&nbsp;— у&nbsp;официанта или по&nbsp;запросу.
-          Сезонная карта обновляется каждый март и&nbsp;октябрь.
+          Винную карту и&nbsp;барную карту добавим отдельно.
         </p>
         <button class="btn btn--ghost" @click="$emit('book')">
           Забронировать стол
@@ -153,6 +201,8 @@ const items = computed(() => data[active.value])
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px 80px;
+  min-height: 640px;
+  align-content: start;
 }
 
 .menu__item {
@@ -222,6 +272,7 @@ const items = computed(() => data[active.value])
   .menu__list {
     grid-template-columns: 1fr;
     gap: 0;
+    min-height: 1080px;
   }
 }
 

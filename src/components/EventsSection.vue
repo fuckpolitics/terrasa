@@ -1,28 +1,28 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
 
-const bg = 'https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=2400&q=80'
+const bg = '/images/terrasa/events-bg.webp'
 
 const formats = [
   {
-    title: 'Камерный ужин',
-    persons: '6–14 персон',
-    desc: 'Винный погреб, авторский сет из&nbsp;5–7 подач и&nbsp;сомелье, который ведёт вечер.',
-    price: 'от 6 800 ₽ / гость',
+    title: 'Анонсы вечеров',
+    persons: 'скоро',
+    desc: 'Здесь будем вести анонсы музыкальных вечеров, сезонных премьер и&nbsp;специальных событий «ТЕРРАСЫ».',
+    price: 'следите за анонсами',
     accent: false,
   },
   {
     title: 'Свадебное торжество',
-    persons: '40–80 персон',
-    desc: 'Полный выкуп ресторана, индивидуальное меню, координатор и&nbsp;флористика «под ключ».',
-    price: 'от 480 000 ₽',
+    persons: '30–70 персон',
+    desc: 'Торжество в&nbsp;банкетном пространстве с&nbsp;согласованным меню, рассадкой и&nbsp;вниманием к&nbsp;деталям вечера.',
+    price: 'от 3 500 ₽ / гость',
     accent: true,
   },
   {
     title: 'Корпоративный вечер',
-    persons: '20–60 персон',
-    desc: 'Банкет или фуршет, технические возможности для презентаций, парковка для&nbsp;гостей.',
-    price: 'от 5 200 ₽ / гость',
+    persons: '30–80 персон',
+    desc: 'Банкет или фуршет для команды, партнёров и&nbsp;гостей с&nbsp;индивидуальным подбором меню.',
+    price: 'от 4 000 ₽ / гость',
     accent: false,
   },
 ]
@@ -41,9 +41,8 @@ const formats = [
           </h2>
         </div>
         <p class="events__lead reveal reveal--delay-2 muted">
-          Мы&nbsp;ведём не&nbsp;больше двух частных событий в&nbsp;неделю —
-          чтобы каждое получилось как&nbsp;надо. Координатор согласовывает
-          меню, музыку, флористику и&nbsp;гостевую логистику.
+          Здесь будем публиковать анонсы вечеров и&nbsp;собирать частные события:
+          свадьбы, корпоративы и&nbsp;банкеты в&nbsp;пространстве до&nbsp;80&nbsp;гостей.
         </p>
       </div>
 
@@ -71,16 +70,16 @@ const formats = [
 
       <div class="events__strip reveal">
         <div class="events__strip-item">
-          <span class="events__strip-num">80</span>
-          <span class="events__strip-label">Персон<br />в&nbsp;банкетной зоне</span>
+          <span class="events__strip-num">30–80</span>
+          <span class="events__strip-label">человек<br />на&nbsp;банкет</span>
         </div>
         <div class="events__strip-item">
-          <span class="events__strip-num">9</span>
-          <span class="events__strip-label">Шеф-сетов<br />под&nbsp;любой формат</span>
+          <span class="events__strip-num">30–70</span>
+          <span class="events__strip-label">персон<br />на&nbsp;свадьбу</span>
         </div>
         <div class="events__strip-item">
-          <span class="events__strip-num">24/7</span>
-          <span class="events__strip-label">Координатор<br />на&nbsp;связи до&nbsp;события</span>
+          <span class="events__strip-num">от 4000</span>
+          <span class="events__strip-label">рублей / гость<br />на&nbsp;корпоратив</span>
         </div>
       </div>
     </div>

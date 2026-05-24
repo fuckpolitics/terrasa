@@ -8,7 +8,7 @@ const year = new Date().getFullYear()
       <div class="footer__brand">
         <span class="footer__mark">T</span>
         <div>
-          <span class="footer__name">Терраса</span>
+          <span class="footer__name">ТЕРРАСА</span>
           <span class="footer__sub">Ресторан · Иваново</span>
         </div>
       </div>
@@ -16,15 +16,15 @@ const year = new Date().getFullYear()
       <div class="footer__cols">
         <div class="footer__col">
           <span class="footer__h">Контакты</span>
-          <a href="tel:+74932000000">+7 (4932) 00-00-00</a>
-          <a href="mailto:hello@terrasa-ivanovo.ru">hello@terrasa-ivanovo.ru</a>
+          <a href="tel:+79060699118">+7 (906) 069-91-18</a>
+          <a href="tel:+79060699107">+7 (906) 069-91-07</a>
+          <a href="mailto:zastol2026@yandex.ru">zastol2026@yandex.ru</a>
           <span>Иваново, пл.&nbsp;Пушкина, 2 — здание драмтеатра</span>
         </div>
         <div class="footer__col">
           <span class="footer__h">Часы</span>
-          <span>Пн–Чт&nbsp;· 12:00–23:00</span>
-          <span>Пт–Сб&nbsp;· 12:00–01:00</span>
-          <span>Вс&nbsp;· 12:00–23:00</span>
+          <span>Ежедневно</span>
+          <span>12:00–00:00</span>
         </div>
         <div class="footer__col">
           <span class="footer__h">Ссылки</span>
@@ -42,7 +42,7 @@ const year = new Date().getFullYear()
     </div>
 
     <div class="footer__bottom container">
-      <span>© {{ year }} «Терраса». Все права защищены.</span>
+      <span>© {{ year }} «ТЕРРАСА». Все права защищены.</span>
       <span>
         <a href="#" class="footer__policy">Политика конфиденциальности</a>
         <span class="footer__sep">·</span>

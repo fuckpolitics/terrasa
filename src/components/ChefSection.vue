@@ -3,8 +3,8 @@ import { ref } from 'vue'
 import ParallaxBg from './ParallaxBg.vue'
 import { useParallax } from '../composables/useParallax.js'
 
-const bg = 'https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=2400&q=80'
-const portrait = 'https://images.unsplash.com/photo-1583394293214-28ded15ee548?auto=format&fit=crop&w=1400&q=80'
+const bg = '/images/terrasa/chef-bg.webp'
+const portrait = '/images/terrasa/chef-portrait.webp'
 
 const portraitRef = ref(null)
 useParallax(portraitRef, { speed: -0.12 })
@@ -23,42 +23,41 @@ useParallax(portraitRef, { speed: -0.12 })
         ></div>
         <div class="chef__signature">
           <span class="ornament">Chef</span>
-          <span class="chef__sig-name">А.&nbsp;Корнев</span>
+          <span class="chef__sig-name">В.&nbsp;Княжев</span>
         </div>
       </div>
 
       <div class="chef__text">
         <span class="eyebrow reveal">Шеф-повар</span>
         <h2 class="section-title reveal reveal--delay-1">
-          Александр<br /><em>Корнев</em>
+          Виктор<br /><em>Княжев</em>
         </h2>
 
         <div class="chef__bio reveal reveal--delay-2 muted">
           <p>
-            Двенадцать лет на&nbsp;кухне, шесть&nbsp;— стажировки в&nbsp;Москве,
-            Тбилиси и&nbsp;Сан-Себастьяне. В&nbsp;2026&nbsp;году переехал
-            в&nbsp;Иваново, чтобы открыть «Террасу» и&nbsp;собрать первую
-            сезонную карту.
+            Виктор Княжев больше 20&nbsp;лет на&nbsp;кухне и&nbsp;за&nbsp;это
+            время прошёл путь через десятки команд, запусков и&nbsp;сильных
+            ресторанных историй.
           </p>
           <p>
-            «Я&nbsp;не&nbsp;люблю громкие слова про авторскую кухню.
-            Хороший ужин&nbsp;— это когда вы&nbsp;улыбаетесь между подачами,
-            а&nbsp;не&nbsp;спрашиваете, что это было».
+            За&nbsp;его плечами больше 10&nbsp;успешных проектов, а&nbsp;теперь
+            его кухня стала частью «ТЕРРАСЫ»&nbsp;— с&nbsp;сезонными блюдами,
+            понятным вкусом и&nbsp;вниманием к&nbsp;деталям.
           </p>
         </div>
 
         <div class="chef__awards reveal reveal--delay-3">
           <div class="chef__award">
-            <span class="chef__award-num">2023</span>
-            <span class="chef__award-text">Шеф года<br />по&nbsp;версии Eat&nbsp;Out</span>
+            <span class="chef__award-num">20+</span>
+            <span class="chef__award-text">лет<br />на&nbsp;кухне</span>
           </div>
           <div class="chef__award">
-            <span class="chef__award-num">2024</span>
-            <span class="chef__award-text">Гран-при<br />«Лучший ресторан ЦФО»</span>
+            <span class="chef__award-num">10+</span>
+            <span class="chef__award-text">успешных<br />проектов</span>
           </div>
           <div class="chef__award">
-            <span class="chef__award-num">2025</span>
-            <span class="chef__award-text">Финалист<br />The Russian Menu Awards</span>
+            <span class="chef__award-num">3</span>
+            <span class="chef__award-text">блюда<br />от&nbsp;шефа</span>
           </div>
         </div>
       </div>
