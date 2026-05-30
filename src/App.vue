@@ -34,7 +34,7 @@ onMounted(() => {
       <MenuSection @book="openBooking" />
       <AtmosphereSection />
       <ChefSection />
-      <EventsSection @book="openBooking" />
+      <EventsSection />
       <BookingSection />
       <ContactsSection @book="openBooking" />
     </main>

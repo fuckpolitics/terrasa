@@ -1,7 +1,17 @@
 <script setup>
+import { ref } from 'vue'
 import ParallaxBg from './ParallaxBg.vue'
+import CallbackModal from './CallbackModal.vue'
 
 const bg = '/images/terrasa/events-bg.webp'
+
+const showCallback = ref(false)
+const callbackTopic = ref('')
+
+function discuss(format) {
+  callbackTopic.value = format.title
+  showCallback.value = true
+}
 
 const formats = [
   {
@@ -61,7 +71,7 @@ const formats = [
           <p class="event__desc" v-html="f.desc"></p>
           <div class="event__foot">
             <span class="event__price">{{ f.price }}</span>
-            <a href="#booking" class="event__cta" @click.prevent="$emit('book')">
+            <a href="#" class="event__cta" @click.prevent="discuss(f)">
               Обсудить <span class="arrow">→</span>
             </a>
           </div>
@@ -83,6 +93,8 @@ const formats = [
         </div>
       </div>
     </div>
+
+    <CallbackModal v-model="showCallback" :topic="callbackTopic" />
   </section>
 </template>
 
