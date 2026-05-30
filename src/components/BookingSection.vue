@@ -23,21 +23,54 @@ const guestsOptions = [1, 2, 3, 4, 5, 6, 7, 8, '8+']
 const timeSlots = ['12:00', '13:30', '15:00', '17:00', '18:30', '19:00', '19:30', '20:00', '20:30', '21:00', '21:30', '22:00', '22:30', '23:00']
 const occasions = ['Просто ужин', 'Свидание', 'День рождения', 'Свадьба', 'Корпоратив', 'Банкет']
 
+// Заявки уходят на почту ресторана через FormSubmit (formsubmit.co):
+// статический сайт без бэкенда, письма пересылаются на этот адрес.
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/zastol2026@yandex.ru'
+
 const isValid = computed(
   () => form.name.trim().length >= 2 && /\+?[\d\s\-()]{10,}/.test(form.phone),
 )
 
-function submit() {
+async function submit() {
   if (!isValid.value) {
     error.value = 'Заполните, пожалуйста, имя и телефон.'
     return
   }
   error.value = ''
   sending.value = true
-  setTimeout(() => {
-    sending.value = false
+
+  const payload = {
+    _subject: `Заявка с сайта ТЕРРАСА — ${form.name}`,
+    _template: 'table',
+    _captcha: 'false',
+    Имя: form.name,
+    Телефон: form.phone,
+    Дата: form.date,
+    Время: form.time,
+    Гостей: String(form.guests),
+    Повод: form.occasion || '—',
+    Комментарий: form.comment || '—',
+  }
+
+  try {
+    const res = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
+
+    if (!res.ok) throw new Error(`HTTP ${res.status}`)
+
     sent.value = true
-  }, 900)
+  } catch (e) {
+    error.value =
+      'Не удалось отправить заявку. Позвоните, пожалуйста, по телефону +7 (906) 069-91-18.'
+  } finally {
+    sending.value = false
+  }
 }
 
 function reset() {
