@@ -3,9 +3,8 @@ import ParallaxBg from './ParallaxBg.vue'
 
 const heroImg = '/images/terrasa/hero.webp'
 
-function scrollToBooking() {
-  document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })
-}
+defineEmits(['book'])
+
 function scrollToMenu() {
   document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' })
 }
@@ -45,7 +44,7 @@ function scrollToMenu() {
         </p>
 
         <div class="hero__cta reveal reveal--delay-3">
-          <button class="btn" @click="scrollToBooking">
+          <button class="btn" @click="$emit('book')">
             Забронировать стол
             <span class="arrow">→</span>
           </button>

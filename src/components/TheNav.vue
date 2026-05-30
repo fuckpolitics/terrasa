@@ -1,5 +1,6 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { openBooking } from '../lib/booking.js'
 
 const scrolled = ref(false)
 const open = ref(false)
@@ -25,8 +26,7 @@ function go(id) {
 
 function book() {
   open.value = false
-  const el = document.getElementById('booking')
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' })
+  openBooking()
 }
 
 onMounted(() => {

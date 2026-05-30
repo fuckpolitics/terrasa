@@ -11,13 +11,10 @@ import BookingSection from './components/BookingSection.vue'
 import ContactsSection from './components/ContactsSection.vue'
 import TheFooter from './components/TheFooter.vue'
 import { useReveal } from './composables/useReveal.js'
+import { openBooking } from './lib/booking.js'
 
 const root = ref(null)
 useReveal(root)
-
-function scrollToBooking() {
-  document.getElementById('booking')?.scrollIntoView({ behavior: 'smooth' })
-}
 
 onMounted(() => {
   // Trigger split-line entrance once page loaded.
@@ -32,14 +29,14 @@ onMounted(() => {
     <TheNav />
 
     <main>
-      <HeroSection @book="scrollToBooking" />
+      <HeroSection @book="openBooking" />
       <AboutSection />
-      <MenuSection @book="scrollToBooking" />
+      <MenuSection @book="openBooking" />
       <AtmosphereSection />
       <ChefSection />
-      <EventsSection @book="scrollToBooking" />
+      <EventsSection @book="openBooking" />
       <BookingSection />
-      <ContactsSection @book="scrollToBooking" />
+      <ContactsSection @book="openBooking" />
     </main>
 
     <TheFooter />
