@@ -1,6 +1,7 @@
 <script setup>
 import { ref, reactive, computed, watch } from 'vue'
 import { formatRuPhone } from '../lib/phone.js'
+import { trackGoal } from '../lib/analytics.js'
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
@@ -30,6 +31,7 @@ watch(
     if (open) {
       sent.value = false
       error.value = ''
+      trackGoal('callback_open', { topic: props.topic })
     }
   },
 )
@@ -60,6 +62,7 @@ async function submit() {
     })
     if (!res.ok) throw new Error(`HTTP ${res.status}`)
     sent.value = true
+    trackGoal('callback_sent', { topic: props.topic })
     form.name = ''
     form.phone = ''
     form.comment = ''

@@ -6,12 +6,15 @@
 // (querySelectorAll, без делегирования), поэтому навешивать класс на Vue-кнопки
 // ненадёжно — вместо этого мы программно кликаем по его собственной кнопке.
 
+import { trackGoal } from './analytics.js'
+
 const WIDGET_HASH = '3b826d74c0553cf1bbb7'
 
 // Прямой адрес виджета — фолбэк и источник для встроенного iframe.
 export const WIDGET_IFRAME_URL = `https://www.restoplace.ws/?address=${WIDGET_HASH}&iframe=1&source=${typeof location !== 'undefined' ? location.hostname : 'terrasa-iv.ru'}`
 
 export function openBooking() {
+  trackGoal('booking_open')
   const btn = document.getElementById('restoplace-btn')
   if (btn) {
     btn.click()
