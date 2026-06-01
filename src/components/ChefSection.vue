@@ -12,12 +12,12 @@ const bg = '/images/terrasa/chef-bg.webp'
       <div class="chef__text">
         <span class="eyebrow reveal">Шеф-повар</span>
         <h2 class="section-title reveal reveal--delay-1">
-          Виктор<br /><em>Княжев</em>
+          Кухня<br /><em>от шефа</em>
         </h2>
 
         <div class="chef__bio reveal reveal--delay-2 muted">
           <p>
-            Виктор Княжев больше 20&nbsp;лет на&nbsp;кухне и&nbsp;за&nbsp;это
+            Наш шеф-повар больше 20&nbsp;лет на&nbsp;кухне и&nbsp;за&nbsp;это
             время прошёл путь через десятки команд, запусков и&nbsp;сильных
             ресторанных историй.
           </p>
