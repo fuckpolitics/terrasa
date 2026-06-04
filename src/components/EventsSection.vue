@@ -15,18 +15,19 @@ function discuss(format) {
 
 const formats = [
   {
-    title: 'Анонсы вечеров',
-    persons: 'скоро',
-    desc: 'Здесь будем вести анонсы музыкальных вечеров, сезонных премьер и&nbsp;специальных событий «ТЕРРАСЫ».',
-    price: 'следите за анонсами',
-    accent: false,
+    title: 'Музыкальный вечер',
+    persons: '6 июня · сб',
+    desc: 'Живой саксофон в&nbsp;«ТЕРРАСЕ»&nbsp;— атмосферный вечер под музыку <a class="event__link" href="https://vk.com/vmeste" target="_blank" rel="noopener">саксофониста</a>. Вход свободный, столик бронируйте по&nbsp;телефону или через форму обратной связи.',
+    price: '20:00–22:00',
+    accent: true,
+    cta: 'Забронировать стол',
   },
   {
     title: 'Свадебное торжество',
     persons: '30–70 персон',
     desc: 'Торжество в&nbsp;банкетном пространстве с&nbsp;согласованным меню, рассадкой и&nbsp;вниманием к&nbsp;деталям вечера.',
     price: 'от 3 500 ₽ / гость',
-    accent: true,
+    accent: false,
   },
   {
     title: 'Корпоративный вечер',
@@ -72,7 +73,7 @@ const formats = [
           <div class="event__foot">
             <span class="event__price">{{ f.price }}</span>
             <a href="#" class="event__cta" @click.prevent="discuss(f)">
-              Обсудить <span class="arrow">→</span>
+              {{ f.cta || 'Обсудить' }} <span class="arrow">→</span>
             </a>
           </div>
         </article>
@@ -182,6 +183,17 @@ const formats = [
   font-weight: 400;
   line-height: 1.6;
   margin-bottom: auto;
+}
+
+.event__desc :deep(.event__link) {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.3s var(--ease);
+}
+
+.event__desc :deep(.event__link:hover) {
+  color: var(--accent-2);
 }
 
 .event__foot {
