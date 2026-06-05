@@ -17,10 +17,11 @@ const formats = [
   {
     title: 'Музыкальный вечер',
     persons: '6 июня · сб',
-    desc: 'Живой саксофон в&nbsp;«ТЕРРАСЕ»&nbsp;— атмосферный вечер под музыку <a class="event__link" href="https://vk.com/vmeste" target="_blank" rel="noopener">саксофониста</a>. Вход свободный, столик бронируйте по&nbsp;телефону или через форму обратной связи.',
+    desc: 'Живой саксофон в&nbsp;«ТЕРРАСЕ»&nbsp;— атмосферный вечер под музыку саксофониста. Вход свободный, столик бронируйте по&nbsp;телефону или через форму обратной связи.',
     price: '20:00–22:00',
     accent: true,
     cta: 'Забронировать стол',
+    image: '/images/terrasa/sax.webp',
   },
   {
     title: 'Свадебное торжество',
@@ -62,8 +63,11 @@ const formats = [
           v-for="(f, i) in formats"
           :key="f.title"
           class="event reveal"
-          :class="[{ 'event--accent': f.accent }, `reveal--delay-${i + 1}`]"
+          :class="[{ 'event--accent': f.accent, 'event--media': f.image }, `reveal--delay-${i + 1}`]"
         >
+          <div v-if="f.image" class="event__media">
+            <img :src="f.image" :alt="f.title" loading="lazy" />
+          </div>
           <div class="event__top">
             <span class="event__num">0{{ i + 1 }}</span>
             <span class="event__persons">{{ f.persons }}</span>
@@ -144,6 +148,30 @@ const formats = [
 .event--accent {
   background: rgba(201, 169, 110, 0.08);
   border-color: rgba(201, 169, 110, 0.4);
+}
+
+.event__media {
+  margin: -36px -32px 28px;
+  height: 260px;
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+}
+
+.event__media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+  transition: transform 0.6s var(--ease);
+}
+
+.event--media:hover .event__media img {
+  transform: scale(1.04);
+}
+
+.event--media .event__top {
+  margin-bottom: 24px;
 }
 
 .event__top {
