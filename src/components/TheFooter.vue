@@ -16,7 +16,7 @@ const year = new Date().getFullYear()
       <div class="footer__cols">
         <div class="footer__col">
           <span class="footer__h">Контакты</span>
-          <a href="tel:+79060699118">+7 (906) 069-91-18</a>
+          <a href="tel:+79030177620">+7 (903) 017-76-20</a>
           <a href="tel:+79060699107">+7 (906) 069-91-07</a>
           <a href="mailto:zastol2026@yandex.ru">zastol2026@yandex.ru</a>
           <span>Иваново, пл.&nbsp;Пушкина, 2 — здание драмтеатра</span>

@@ -32,10 +32,10 @@ const bg = '/images/terrasa/contacts-bg.webp'
         <div class="contacts__card reveal reveal--delay-1">
           <span class="contacts__card-eyebrow">Телефоны</span>
           <p class="contacts__card-value">
-            <a href="tel:+79060699118">+7 (906) 069-91-18</a><br />
+            <a href="tel:+79030177620">+7 (903) 017-76-20</a><br />
             <a href="tel:+79060699107">+7 (906) 069-91-07</a>
           </p>
-          <a class="contacts__card-link" href="https://wa.me/79060699118" target="_blank" rel="noopener">
+          <a class="contacts__card-link" href="https://wa.me/79030177620" target="_blank" rel="noopener">
             Написать в&nbsp;WhatsApp <span class="arrow">→</span>
           </a>
         </div>
