@@ -4,6 +4,7 @@ import ParallaxBg from './ParallaxBg.vue'
 import CallbackModal from './CallbackModal.vue'
 
 const bg = '/images/terrasa/events-bg.webp'
+const jazzPoster = '/images/terrasa/jazz.webp'
 
 const showCallback = ref(false)
 const callbackTopic = ref('')
@@ -14,15 +15,6 @@ function discuss(format) {
 }
 
 const formats = [
-  {
-    title: 'Музыкальный вечер',
-    persons: '6 июня · сб',
-    desc: 'Живой саксофон в&nbsp;«ТЕРРАСЕ»&nbsp;— атмосферный вечер под музыку саксофониста. Вход свободный, столик бронируйте по&nbsp;телефону или через форму обратной связи.',
-    price: '20:00–22:00',
-    accent: true,
-    cta: 'Забронировать стол',
-    image: '/images/terrasa/sax.webp',
-  },
   {
     title: 'Свадебное торжество',
     persons: '30–70 персон',
@@ -58,16 +50,43 @@ const formats = [
         </p>
       </div>
 
+      <div class="events__feature reveal">
+        <a
+          class="events__feature-media"
+          href="#"
+          aria-label="Забронировать стол на джазовый вечер"
+          @click.prevent="discuss({ title: 'Джазовый вечер 19 июня' })"
+        >
+          <img
+            :src="jazzPoster"
+            alt="Афиша: Джазовый вечер с Анастасией Охлопковой, 19 июня"
+            loading="lazy"
+          />
+        </a>
+        <div class="events__feature-text">
+          <span class="eyebrow">Ближайшее событие · 19 июня, пт</span>
+          <h3 class="events__feature-title">
+            Джазовый вечер<br /><em>с Анастасией Охлопковой</em>
+          </h3>
+          <p class="muted">
+            Живой вокал, любимые джазовые композиции и&nbsp;атмосфера летнего
+            вечера на&nbsp;ТЕРРАСЕ. Авторская кухня, напитки и&nbsp;прекрасный вид
+            на&nbsp;город. Начало программы в&nbsp;20:00. Количество мест
+            ограничено&nbsp;— рекомендуем бронировать столик заранее.
+          </p>
+          <button class="btn" @click="discuss({ title: 'Джазовый вечер 19 июня' })">
+            Забронировать стол <span class="arrow">→</span>
+          </button>
+        </div>
+      </div>
+
       <div class="events__grid">
         <article
           v-for="(f, i) in formats"
           :key="f.title"
           class="event reveal"
-          :class="[{ 'event--accent': f.accent, 'event--media': f.image }, `reveal--delay-${i + 1}`]"
+          :class="[{ 'event--accent': f.accent }, `reveal--delay-${i + 1}`]"
         >
-          <div v-if="f.image" class="event__media">
-            <img :src="f.image" :alt="f.title" loading="lazy" />
-          </div>
           <div class="event__top">
             <span class="event__num">0{{ i + 1 }}</span>
             <span class="event__persons">{{ f.persons }}</span>
@@ -119,9 +138,56 @@ const formats = [
   justify-self: end;
 }
 
+.events__feature {
+  display: grid;
+  grid-template-columns: minmax(260px, 360px) 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: center;
+  margin-bottom: 64px;
+  padding: clamp(24px, 4vw, 48px);
+  background: rgba(201, 169, 110, 0.06);
+  border: 1px solid rgba(201, 169, 110, 0.32);
+  border-radius: 6px;
+}
+
+.events__feature-media {
+  display: block;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5);
+  transition: transform 0.5s var(--ease);
+}
+
+.events__feature-media:hover {
+  transform: translateY(-5px);
+}
+
+.events__feature-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.events__feature-title {
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.4vw, 46px);
+  font-weight: 400;
+  line-height: 1.05;
+  margin: 18px 0 20px;
+}
+
+.events__feature-text p {
+  color: var(--ink-dim);
+  font-size: 16px;
+  line-height: 1.7;
+  max-width: 540px;
+  margin-bottom: 30px;
+}
+
 .events__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 20px;
   margin-bottom: 80px;
 }
@@ -148,30 +214,6 @@ const formats = [
 .event--accent {
   background: rgba(201, 169, 110, 0.08);
   border-color: rgba(201, 169, 110, 0.4);
-}
-
-.event__media {
-  margin: -36px -32px 28px;
-  height: 260px;
-  overflow: hidden;
-  border-radius: 4px 4px 0 0;
-}
-
-.event__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center 18%;
-  display: block;
-  transition: transform 0.6s var(--ease);
-}
-
-.event--media:hover .event__media img {
-  transform: scale(1.04);
-}
-
-.event--media .event__top {
-  margin-bottom: 24px;
 }
 
 .event__top {
@@ -295,6 +337,19 @@ const formats = [
   }
   .events__lead {
     justify-self: start;
+  }
+  .events__feature {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+    gap: 28px;
+  }
+  .events__feature-media {
+    max-width: 340px;
+  }
+  .events__feature-text p {
+    margin-left: auto;
+    margin-right: auto;
   }
   .events__grid {
     grid-template-columns: 1fr;
