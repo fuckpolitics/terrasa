@@ -4,7 +4,7 @@ import ParallaxBg from './ParallaxBg.vue'
 import CallbackModal from './CallbackModal.vue'
 
 const bg = '/images/terrasa/events-bg.webp'
-const jazzPoster = '/images/terrasa/jazz.webp'
+const rockPoster = '/images/terrasa/rocknroll.webp'
 
 const showCallback = ref(false)
 const callbackTopic = ref('')
@@ -54,27 +54,28 @@ const formats = [
         <a
           class="events__feature-media"
           href="#"
-          aria-label="Забронировать стол на джазовый вечер"
-          @click.prevent="discuss({ title: 'Джазовый вечер 19 июня' })"
+          aria-label="Забронировать стол на рок-н-ролл вечер"
+          @click.prevent="discuss({ title: 'Johnny & The Tomcats — 26 июня' })"
         >
           <img
-            :src="jazzPoster"
-            alt="Афиша: Джазовый вечер с Анастасией Охлопковой, 19 июня"
+            :src="rockPoster"
+            alt="Афиша: Johnny & The Tomcats, рок-н-ролл на ТЕРРАСЕ, 26 июня"
             loading="lazy"
           />
         </a>
         <div class="events__feature-text">
-          <span class="eyebrow">Ближайшее событие · 19 июня, пт</span>
+          <span class="eyebrow">Ближайшее событие · 26 июня, пт</span>
           <h3 class="events__feature-title">
-            Джазовый вечер<br /><em>с Анастасией Охлопковой</em>
+            Rock'n'roll на ТЕРРАСЕ<br /><em>Johnny &amp; The Tomcats</em>
           </h3>
           <p class="muted">
-            Живой вокал, любимые джазовые композиции и&nbsp;атмосфера летнего
-            вечера на&nbsp;ТЕРРАСЕ. Авторская кухня, напитки и&nbsp;прекрасный вид
-            на&nbsp;город. Начало программы в&nbsp;20:00. Количество мест
+            Легендарные хиты рока и&nbsp;блюза в&nbsp;живом исполнении, летний
+            закат и&nbsp;атмосфера настоящего музыкального вечера на&nbsp;открытой
+            террасе в&nbsp;центре города. Авторская кухня, коктейли и&nbsp;лучшая
+            компания. Начало программы в&nbsp;20:30. Количество мест
             ограничено&nbsp;— рекомендуем бронировать столик заранее.
           </p>
-          <button class="btn" @click="discuss({ title: 'Джазовый вечер 19 июня' })">
+          <button class="btn" @click="discuss({ title: 'Johnny & The Tomcats — 26 июня' })">
             Забронировать стол <span class="arrow">→</span>
           </button>
         </div>
