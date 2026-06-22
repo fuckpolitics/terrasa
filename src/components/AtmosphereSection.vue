@@ -1,32 +1,11 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
+import site from '../content/site.json'
 
 const bg = '/images/terrasa/atmosphere-bg.webp'
 
-const tiles = [
-  {
-    img: '/images/terrasa/atmosphere-main.webp',
-    title: 'Главный зал',
-    text: 'Пространство для ужинов, встреч и&nbsp;долгих вечеров в&nbsp;сердце города.',
-    span: 'large',
-  },
-  {
-    img: '/images/terrasa/atmosphere-terrace.webp',
-    title: 'ТЕРРАСА',
-    text: 'Воздух, город и&nbsp;ощущение вечера, который хочется продлить.',
-  },
-  {
-    img: '/images/terrasa/atmosphere-banquet.webp',
-    title: 'Банкетное пространство',
-    text: 'Отдельная зона для свадеб, корпоративов и&nbsp;закрытых мероприятий.',
-  },
-  {
-    img: '/images/terrasa/atmosphere-music.webp',
-    title: 'Музыкальный уголок',
-    text: 'Место для живой музыки, камерных вечеров и&nbsp;анонсов сезона.',
-    span: 'wide',
-  },
-]
+const atmosphere = site.atmosphere
+const tiles = atmosphere.tiles
 </script>
 
 <template>
@@ -35,10 +14,8 @@ const tiles = [
 
     <div class="container section-inner">
       <header class="atmosphere__head">
-        <span class="eyebrow reveal">Атмосфера</span>
-        <h2 class="section-title reveal reveal--delay-1">
-          Четыре пространства<br /><em>под один вечер</em>
-        </h2>
+        <span class="eyebrow reveal">{{ atmosphere.eyebrow }}</span>
+        <h2 class="section-title reveal reveal--delay-1" v-html="atmosphere.title"></h2>
       </header>
 
       <div class="atmosphere__grid">
@@ -56,7 +33,7 @@ const tiles = [
           </div>
           <div class="tile__caption">
             <h3>{{ t.title }}</h3>
-            <p v-html="t.text"></p>
+            <p>{{ t.text }}</p>
           </div>
         </article>
       </div>

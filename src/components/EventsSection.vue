@@ -2,34 +2,22 @@
 import { ref } from 'vue'
 import ParallaxBg from './ParallaxBg.vue'
 import CallbackModal from './CallbackModal.vue'
+import eventsData from '../content/events.json'
 
 const bg = '/images/terrasa/events-bg.webp'
-const rockPoster = '/images/terrasa/rocknroll.webp'
+
+const events = eventsData
+const feature = eventsData.feature
+const formats = eventsData.formats
+const strip = eventsData.strip
 
 const showCallback = ref(false)
 const callbackTopic = ref('')
 
-function discuss(format) {
-  callbackTopic.value = format.title
+function discuss(topic) {
+  callbackTopic.value = topic
   showCallback.value = true
 }
-
-const formats = [
-  {
-    title: 'Свадебное торжество',
-    persons: '30–70 персон',
-    desc: 'Торжество в&nbsp;банкетном пространстве с&nbsp;согласованным меню, рассадкой и&nbsp;вниманием к&nbsp;деталям вечера.',
-    price: 'от 3 500 ₽ / гость',
-    accent: false,
-  },
-  {
-    title: 'Корпоративный вечер',
-    persons: '30–80 персон',
-    desc: 'Банкет или фуршет для команды, партнёров и&nbsp;гостей с&nbsp;индивидуальным подбором меню.',
-    price: 'от 4 000 ₽ / гость',
-    accent: false,
-  },
-]
 </script>
 
 <template>
@@ -39,43 +27,30 @@ const formats = [
     <div class="container section-inner">
       <div class="events__head">
         <div class="events__head-text">
-          <span class="eyebrow reveal">События</span>
-          <h2 class="section-title reveal reveal--delay-1">
-            Вечера, которые<br /><em>вы&nbsp;запомните</em>
-          </h2>
+          <span class="eyebrow reveal">{{ events.eyebrow }}</span>
+          <h2 class="section-title reveal reveal--delay-1" v-html="events.title"></h2>
         </div>
-        <p class="events__lead reveal reveal--delay-2 muted">
-          Здесь будем публиковать анонсы вечеров и&nbsp;собирать частные события:
-          свадьбы, корпоративы и&nbsp;банкеты в&nbsp;пространстве до&nbsp;80&nbsp;гостей.
-        </p>
+        <p class="events__lead reveal reveal--delay-2 muted">{{ events.lead }}</p>
       </div>
 
-      <div class="events__feature reveal">
+      <div v-if="feature && feature.show" class="events__feature reveal">
         <a
           class="events__feature-media"
           href="#"
-          aria-label="Забронировать стол на рок-н-ролл вечер"
-          @click.prevent="discuss({ title: 'Johnny & The Tomcats — 26 июня' })"
+          aria-label="Забронировать стол на ближайшее событие"
+          @click.prevent="discuss(feature.bookingTopic)"
         >
           <img
-            :src="rockPoster"
-            alt="Афиша: Johnny & The Tomcats, рок-н-ролл на ТЕРРАСЕ, 26 июня"
+            :src="feature.poster"
+            :alt="feature.posterAlt"
             loading="lazy"
           />
         </a>
         <div class="events__feature-text">
-          <span class="eyebrow">Ближайшее событие · 26 июня, пт</span>
-          <h3 class="events__feature-title">
-            Rock'n'roll на ТЕРРАСЕ<br /><em>Johnny &amp; The Tomcats</em>
-          </h3>
-          <p class="muted">
-            Легендарные хиты рока и&nbsp;блюза в&nbsp;живом исполнении, летний
-            закат и&nbsp;атмосфера настоящего музыкального вечера на&nbsp;открытой
-            террасе в&nbsp;центре города. Авторская кухня, коктейли и&nbsp;лучшая
-            компания. Начало программы в&nbsp;20:30. Количество мест
-            ограничено&nbsp;— рекомендуем бронировать столик заранее.
-          </p>
-          <button class="btn" @click="discuss({ title: 'Johnny & The Tomcats — 26 июня' })">
+          <span class="eyebrow">{{ feature.dateLabel }}</span>
+          <h3 class="events__feature-title" v-html="feature.title"></h3>
+          <p class="muted">{{ feature.text }}</p>
+          <button class="btn" @click="discuss(feature.bookingTopic)">
             Забронировать стол <span class="arrow">→</span>
           </button>
         </div>
@@ -93,10 +68,10 @@ const formats = [
             <span class="event__persons">{{ f.persons }}</span>
           </div>
           <h3 class="event__title">{{ f.title }}</h3>
-          <p class="event__desc" v-html="f.desc"></p>
+          <p class="event__desc">{{ f.desc }}</p>
           <div class="event__foot">
             <span class="event__price">{{ f.price }}</span>
-            <a href="#" class="event__cta" @click.prevent="discuss(f)">
+            <a href="#" class="event__cta" @click.prevent="discuss(f.title)">
               {{ f.cta || 'Обсудить' }} <span class="arrow">→</span>
             </a>
           </div>
@@ -104,17 +79,9 @@ const formats = [
       </div>
 
       <div class="events__strip reveal">
-        <div class="events__strip-item">
-          <span class="events__strip-num">30–80</span>
-          <span class="events__strip-label">человек<br />на&nbsp;банкет</span>
-        </div>
-        <div class="events__strip-item">
-          <span class="events__strip-num">30–70</span>
-          <span class="events__strip-label">персон<br />на&nbsp;свадьбу</span>
-        </div>
-        <div class="events__strip-item">
-          <span class="events__strip-num">от 4000</span>
-          <span class="events__strip-label">рублей / гость<br />на&nbsp;корпоратив</span>
+        <div v-for="(s, i) in strip" :key="i" class="events__strip-item">
+          <span class="events__strip-num">{{ s.num }}</span>
+          <span class="events__strip-label" v-html="s.label"></span>
         </div>
       </div>
     </div>

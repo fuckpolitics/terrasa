@@ -1,8 +1,10 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
 import { WIDGET_IFRAME_URL, openBooking } from '../lib/booking.js'
+import site from '../content/site.json'
 
 const bg = '/images/terrasa/booking-bg.webp'
+const booking = site.booking
 </script>
 
 <template>
@@ -11,21 +13,12 @@ const bg = '/images/terrasa/booking-bg.webp'
 
     <div class="container section-inner booking__inner">
       <div class="booking__text">
-        <span class="eyebrow reveal">Бронирование</span>
-        <h2 class="section-title reveal reveal--delay-1">
-          Закрепим<br /><em>ваш вечер</em>
-        </h2>
-        <p class="reveal reveal--delay-2 muted booking__lead">
-          Выберите дату, время и&nbsp;стол прямо здесь&nbsp;— бронь подтвердится
-          онлайн, а&nbsp;администратор останется на&nbsp;связи. Для банкетов
-          на&nbsp;30–80&nbsp;человек мы&nbsp;заранее согласуем формат, меню
-          и&nbsp;рассадку.
-        </p>
+        <span class="eyebrow reveal">{{ booking.eyebrow }}</span>
+        <h2 class="section-title reveal reveal--delay-1" v-html="booking.title"></h2>
+        <p class="reveal reveal--delay-2 muted booking__lead">{{ booking.lead }}</p>
 
         <ul class="booking__features reveal reveal--delay-3">
-          <li>Бронирование столов и&nbsp;заявки на&nbsp;банкет в&nbsp;одной форме</li>
-          <li>Закрытые мероприятия до&nbsp;80&nbsp;персон обсуждаются отдельно</li>
-          <li>Любые предпочтения по&nbsp;меню&nbsp;— заранее, мы&nbsp;учтём</li>
+          <li v-for="(f, i) in booking.features" :key="i">{{ f }}</li>
         </ul>
 
         <button class="btn booking__open reveal reveal--delay-3" @click="openBooking">

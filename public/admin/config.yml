@@ -1,0 +1,190 @@
+backend:
+  name: github
+  repo: fuckpolitics/terrasa
+  branch: main
+  # Вход через GitHub обеспечивает Sveltia CMS — отдельный OAuth-прокси не нужен.
+
+# Язык интерфейса админки
+locale: ru
+
+# Куда складывать загруженные через CMS картинки и как на них ссылаться на сайте
+media_folder: public/images/uploads
+public_folder: /images/uploads
+
+# Сообщения коммитов на понятном языке (видны в истории GitHub)
+backend_commit_messages:
+  create: 'Сайт: добавлено «{{collection}}» ({{slug}})'
+  update: 'Сайт: обновлено «{{collection}}»'
+  delete: 'Сайт: удалено «{{collection}}» ({{slug}})'
+  uploadMedia: 'Сайт: загружен файл {{path}}'
+  deleteMedia: 'Сайт: удалён файл {{path}}'
+
+collections:
+  # ── 1. Меню ────────────────────────────────────────────────
+  - name: menu
+    label: 'Меню'
+    files:
+      - name: menu
+        label: 'Меню ресторана'
+        file: src/content/menu.json
+        description: 'Разделы меню, блюда и цены. Цену пишите числом, без знака ₽ (например: 750). Пустая цена покажет «уточняйте».'
+        fields:
+          - { name: eyebrow, label: 'Надпись над заголовком', widget: string }
+          - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
+          - { name: intro, label: 'Вступительный текст', widget: text }
+          - { name: footnote, label: 'Примечание внизу', widget: text }
+          - name: sections
+            label: 'Разделы меню'
+            label_singular: 'Раздел'
+            widget: list
+            summary: '{{fields.label}}'
+            fields:
+              - { name: id, label: 'Код раздела (латиницей, без пробелов)', widget: string, hint: 'Например: salads. Менять не обязательно.' }
+              - { name: label, label: 'Название раздела (вкладка)', widget: string }
+              - name: items
+                label: 'Блюда / напитки'
+                label_singular: 'Позиция'
+                widget: list
+                summary: '{{fields.name}} — {{fields.price}}'
+                fields:
+                  - { name: name, label: 'Название', widget: string }
+                  - { name: desc, label: 'Описание / выход', widget: string, required: false, hint: 'Например: Выход: 250 г' }
+                  - { name: price, label: 'Цена (только число)', widget: string, required: false }
+                  - { name: heading, label: 'Это подзаголовок внутри раздела?', widget: boolean, required: false, default: false, hint: 'Включите для строк-разделителей в барной карте (Виски, Вино и т.п.)' }
+
+  # ── 2. События ─────────────────────────────────────────────
+  - name: events
+    label: 'События'
+    files:
+      - name: events
+        label: 'События и банкеты'
+        file: src/content/events.json
+        description: 'Ближайшее событие (афиша) и форматы банкетов.'
+        fields:
+          - { name: eyebrow, label: 'Надпись над заголовком', widget: string }
+          - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
+          - { name: lead, label: 'Вступительный текст', widget: text }
+          - name: feature
+            label: 'Ближайшее событие (афиша)'
+            widget: object
+            fields:
+              - { name: show, label: 'Показывать блок на сайте', widget: boolean, default: true }
+              - { name: poster, label: 'Афиша (картинка)', widget: image, required: false }
+              - { name: posterAlt, label: 'Описание картинки (для поиска)', widget: string, required: false }
+              - { name: dateLabel, label: 'Дата / подпись', widget: string, hint: 'Например: Ближайшее событие · 26 июня, пт' }
+              - { name: title, label: 'Заголовок события (можно <em> и <br />)', widget: string }
+              - { name: bookingTopic, label: 'Тема для заявки', widget: string, hint: 'С этим текстом придёт заявка на почту.' }
+              - { name: text, label: 'Описание события', widget: text }
+          - name: formats
+            label: 'Форматы банкетов'
+            label_singular: 'Формат'
+            widget: list
+            summary: '{{fields.title}} — {{fields.price}}'
+            fields:
+              - { name: title, label: 'Название формата', widget: string }
+              - { name: persons, label: 'Количество гостей', widget: string, hint: 'Например: 30–80 персон' }
+              - { name: desc, label: 'Описание', widget: text }
+              - { name: price, label: 'Цена', widget: string, hint: 'Например: от 4 000 ₽ / гость' }
+          - name: strip
+            label: 'Цифры внизу секции'
+            label_singular: 'Цифра'
+            widget: list
+            summary: '{{fields.num}}'
+            fields:
+              - { name: num, label: 'Число', widget: string }
+              - { name: label, label: 'Подпись (можно <br />)', widget: string }
+
+  # ── 3. Контакты и тексты ───────────────────────────────────
+  - name: site
+    label: 'Контакты и тексты'
+    files:
+      - name: contacts
+        label: 'Контакты'
+        file: src/content/site.json
+        description: 'Телефоны, адрес, часы работы, соцсети. Меняются сразу во всех местах сайта.'
+        fields:
+          - name: contacts
+            label: 'Контакты'
+            widget: object
+            fields:
+              - { name: phonePrimary, label: 'Телефон основной', widget: string, hint: 'Формат: +7 (903) 017-76-20' }
+              - { name: phoneSecondary, label: 'Телефон дополнительный', widget: string, required: false }
+              - { name: whatsapp, label: 'Ссылка на WhatsApp', widget: string, required: false, hint: 'Например: https://wa.me/79030177620' }
+              - { name: email, label: 'Почта (на неё приходят заявки)', widget: string }
+              - { name: addressLine1, label: 'Адрес, строка 1', widget: string }
+              - { name: addressLine2, label: 'Адрес, строка 2', widget: string }
+              - { name: addressHint, label: 'Адрес, подсказка', widget: string, required: false }
+              - { name: addressShort, label: 'Адрес одной строкой (в подвале)', widget: string }
+              - { name: hoursDays, label: 'Часы: дни', widget: string, hint: 'Например: Ежедневно' }
+              - { name: hoursTime, label: 'Часы: время', widget: string, hint: 'Например: 12:00–00:00' }
+              - { name: mapLink, label: 'Ссылка «Открыть на карте»', widget: string }
+              - { name: mapEmbed, label: 'Адрес встроенной карты (виджет)', widget: string }
+              - { name: telegram, label: 'Ссылка на Telegram', widget: string, required: false }
+              - { name: vk, label: 'Ссылка на VK', widget: string, required: false }
+              - { name: youtube, label: 'Ссылка на YouTube', widget: string, required: false }
+          - label: 'Главный экран'
+            name: hero
+            widget: object
+            fields:
+              - { name: eyebrow, label: 'Надпись сверху', widget: string }
+              - { name: titleLine1, label: 'Заголовок, строка 1', widget: string }
+              - { name: titleLine2, label: 'Заголовок, строка 2', widget: string }
+              - { name: titleLine3, label: 'Заголовок, строка 3', widget: string }
+              - { name: titleLine4, label: 'Заголовок, строка 4', widget: string }
+              - { name: lead, label: 'Текст под заголовком', widget: text }
+              - name: stats
+                label: 'Цифры'
+                widget: list
+                summary: '{{fields.num}}'
+                fields:
+                  - { name: num, label: 'Число', widget: string }
+                  - { name: label, label: 'Подпись (можно <br />)', widget: string }
+          - label: 'О ресторане'
+            name: about
+            widget: object
+            fields:
+              - { name: eyebrow, label: 'Надпись сверху', widget: string }
+              - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
+              - { name: paragraphs, label: 'Абзацы текста', widget: list, field: { name: p, label: 'Абзац', widget: text } }
+              - { name: list, label: 'Список пунктов', widget: list, field: { name: item, label: 'Пункт', widget: string } }
+              - { name: quoteEyebrow, label: 'Подпись над цитатой', widget: string }
+              - { name: quote, label: 'Цитата', widget: text }
+              - { name: quoteAuthor, label: 'Автор цитаты', widget: string }
+          - label: 'Атмосфера'
+            name: atmosphere
+            widget: object
+            fields:
+              - { name: eyebrow, label: 'Надпись сверху', widget: string }
+              - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
+              - name: tiles
+                label: 'Плитки-пространства'
+                label_singular: 'Плитка'
+                widget: list
+                summary: '{{fields.title}}'
+                fields:
+                  - { name: img, label: 'Картинка', widget: image }
+                  - { name: title, label: 'Название', widget: string }
+                  - { name: text, label: 'Описание', widget: text }
+                  - { name: span, label: 'Размер плитки', widget: select, options: ['large', 'reg', 'wide'], default: 'reg', hint: 'large — большая, reg — обычная, wide — широкая' }
+          - label: 'Шеф-повар'
+            name: chef
+            widget: object
+            fields:
+              - { name: eyebrow, label: 'Надпись сверху', widget: string }
+              - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
+              - { name: paragraphs, label: 'Абзацы текста', widget: list, field: { name: p, label: 'Абзац', widget: text } }
+              - name: awards
+                label: 'Цифры'
+                widget: list
+                summary: '{{fields.num}}'
+                fields:
+                  - { name: num, label: 'Число', widget: string }
+                  - { name: text, label: 'Подпись (можно <br />)', widget: string }
+          - label: 'Бронирование'
+            name: booking
+            widget: object
+            fields:
+              - { name: eyebrow, label: 'Надпись сверху', widget: string }
+              - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
+              - { name: lead, label: 'Текст', widget: text }
+              - { name: features, label: 'Пункты-преимущества', widget: list, field: { name: item, label: 'Пункт', widget: string } }

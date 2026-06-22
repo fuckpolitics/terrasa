@@ -1,7 +1,9 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
+import site from '../content/site.json'
 
 const heroImg = '/images/terrasa/hero.webp'
+const hero = site.hero
 
 defineEmits(['book'])
 
@@ -16,32 +18,26 @@ function scrollToMenu() {
 
     <div class="container hero__inner">
       <div class="hero__top">
-        <span class="eyebrow">Иваново · в&nbsp;здании драмтеатра</span>
+        <span class="eyebrow">{{ hero.eyebrow }}</span>
       </div>
 
       <h1 class="hero__title display">
         <span class="split-line">
-          <span class="split-line__inner" :style="{ '--d': '0.05s' }">ТЕРРАСА —</span>
+          <span class="split-line__inner" :style="{ '--d': '0.05s' }" v-html="hero.titleLine1"></span>
         </span>
         <span class="split-line">
-          <span class="split-line__inner" :style="{ '--d': '0.18s' }">
-            <em>авторская</em> кухня
-          </span>
+          <span class="split-line__inner" :style="{ '--d': '0.18s' }" v-html="hero.titleLine2"></span>
         </span>
         <span class="split-line">
-          <span class="split-line__inner" :style="{ '--d': '0.32s' }">в&nbsp;театре, где</span>
+          <span class="split-line__inner" :style="{ '--d': '0.32s' }" v-html="hero.titleLine3"></span>
         </span>
         <span class="split-line">
-          <span class="split-line__inner" :style="{ '--d': '0.46s' }">начинается вечер.</span>
+          <span class="split-line__inner" :style="{ '--d': '0.46s' }" v-html="hero.titleLine4"></span>
         </span>
       </h1>
 
       <div class="hero__bottom">
-        <p class="hero__lead reveal reveal--delay-2">
-          «ТЕРРАСА»&nbsp;— это не&nbsp;просто ресторан. Это место в&nbsp;самом
-          сердце города, куда приходят не&nbsp;поесть, а&nbsp;прожить вечер.
-          Атмосфера, пространство, ощущение&nbsp;— вот настоящий продукт.
-        </p>
+        <p class="hero__lead reveal reveal--delay-2">{{ hero.lead }}</p>
 
         <div class="hero__cta reveal reveal--delay-3">
           <button class="btn" @click="$emit('book')">
@@ -54,17 +50,9 @@ function scrollToMenu() {
         </div>
 
         <div class="hero__meta reveal reveal--delay-4">
-          <div class="hero__meta-item">
-            <span class="hero__meta-num">2026</span>
-            <span class="hero__meta-label">премьера<br />сезона</span>
-          </div>
-          <div class="hero__meta-item">
-            <span class="hero__meta-num">3</span>
-            <span class="hero__meta-label">блюда<br />от&nbsp;шефа</span>
-          </div>
-          <div class="hero__meta-item">
-            <span class="hero__meta-num">80</span>
-            <span class="hero__meta-label">персон<br />для&nbsp;закрытых событий</span>
+          <div v-for="(s, i) in hero.stats" :key="i" class="hero__meta-item">
+            <span class="hero__meta-num">{{ s.num }}</span>
+            <span class="hero__meta-label" v-html="s.label"></span>
           </div>
         </div>
       </div>

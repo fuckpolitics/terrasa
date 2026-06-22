@@ -2,6 +2,7 @@
 import { ref, reactive, computed, watch } from 'vue'
 import { formatRuPhone } from '../lib/phone.js'
 import { trackGoal } from '../lib/analytics.js'
+import { contacts, telHref } from '../lib/contacts.js'
 
 const props = defineProps({
   modelValue: { type: Boolean, default: false },
@@ -10,7 +11,7 @@ const props = defineProps({
 const emit = defineEmits(['update:modelValue'])
 
 // Заявки уходят на почту ресторана через FormSubmit (статический сайт без бэкенда).
-const FORM_ENDPOINT = 'https://formsubmit.co/ajax/zastol2026@yandex.ru'
+const FORM_ENDPOINT = `https://formsubmit.co/ajax/${contacts.email}`
 
 const form = reactive({ name: '', phone: '', comment: '' })
 const sent = ref(false)
@@ -67,8 +68,7 @@ async function submit() {
     form.phone = ''
     form.comment = ''
   } catch (e) {
-    error.value =
-      'Не удалось отправить заявку. Позвоните, пожалуйста, по телефону +7 (903) 017-76-20.'
+    error.value = `Не удалось отправить заявку. Позвоните, пожалуйста, по телефону ${contacts.phonePrimary}.`
   } finally {
     sending.value = false
   }
@@ -93,8 +93,8 @@ async function submit() {
             </p>
 
             <div class="cb__phones">
-              <a href="tel:+79030177620">+7 (903) 017-76-20</a>
-              <a href="tel:+79060699107">+7 (906) 069-91-07</a>
+              <a :href="telHref(contacts.phonePrimary)">{{ contacts.phonePrimary }}</a>
+              <a v-if="contacts.phoneSecondary" :href="telHref(contacts.phoneSecondary)">{{ contacts.phoneSecondary }}</a>
             </div>
 
             <form class="cb__form" @submit.prevent="submit">

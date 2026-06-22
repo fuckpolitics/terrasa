@@ -1,5 +1,6 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
+import { contacts, telHref } from '../lib/contacts.js'
 
 const bg = '/images/terrasa/contacts-bg.webp'
 </script>
@@ -20,11 +21,11 @@ const bg = '/images/terrasa/contacts-bg.webp'
         <div class="contacts__card reveal">
           <span class="contacts__card-eyebrow">Адрес</span>
           <p class="contacts__card-value">
-            г.&nbsp;Иваново,<br />
-            пл.&nbsp;Пушкина,&nbsp;2<br />
-            <span class="contacts__card-hint">здание драмтеатра</span>
+            {{ contacts.addressLine1 }}<br />
+            {{ contacts.addressLine2 }}<br />
+            <span class="contacts__card-hint">{{ contacts.addressHint }}</span>
           </p>
-          <a class="contacts__card-link" href="https://yandex.ru/maps/?text=Иваново+ресторан+ТЕРРАСА+площадь+Пушкина+2" target="_blank" rel="noopener">
+          <a class="contacts__card-link" :href="contacts.mapLink" target="_blank" rel="noopener">
             Открыть на&nbsp;карте <span class="arrow">→</span>
           </a>
         </div>
@@ -32,10 +33,10 @@ const bg = '/images/terrasa/contacts-bg.webp'
         <div class="contacts__card reveal reveal--delay-1">
           <span class="contacts__card-eyebrow">Телефоны</span>
           <p class="contacts__card-value">
-            <a href="tel:+79030177620">+7 (903) 017-76-20</a><br />
-            <a href="tel:+79060699107">+7 (906) 069-91-07</a>
+            <a :href="telHref(contacts.phonePrimary)">{{ contacts.phonePrimary }}</a><br />
+            <a v-if="contacts.phoneSecondary" :href="telHref(contacts.phoneSecondary)">{{ contacts.phoneSecondary }}</a>
           </p>
-          <a class="contacts__card-link" href="https://wa.me/79030177620" target="_blank" rel="noopener">
+          <a v-if="contacts.whatsapp" class="contacts__card-link" :href="contacts.whatsapp" target="_blank" rel="noopener">
             Написать в&nbsp;WhatsApp <span class="arrow">→</span>
           </a>
         </div>
@@ -43,8 +44,8 @@ const bg = '/images/terrasa/contacts-bg.webp'
         <div class="contacts__card reveal reveal--delay-2">
           <span class="contacts__card-eyebrow">Часы работы</span>
           <p class="contacts__card-value">
-            Ежедневно<br />
-            12:00–00:00
+            {{ contacts.hoursDays }}<br />
+            {{ contacts.hoursTime }}
           </p>
           <a class="contacts__card-link" href="#booking" @click.prevent="$emit('book')">
             Забронировать <span class="arrow">→</span>
@@ -54,9 +55,9 @@ const bg = '/images/terrasa/contacts-bg.webp'
         <div class="contacts__card reveal reveal--delay-3">
           <span class="contacts__card-eyebrow">Почта</span>
           <p class="contacts__card-value">
-            <a href="mailto:zastol2026@yandex.ru">zastol2026@yandex.ru</a>
+            <a :href="`mailto:${contacts.email}`">{{ contacts.email }}</a>
           </p>
-          <a class="contacts__card-link" href="mailto:zastol2026@yandex.ru">
+          <a class="contacts__card-link" :href="`mailto:${contacts.email}`">
             События и&nbsp;банкеты <span class="arrow">→</span>
           </a>
         </div>
@@ -66,7 +67,7 @@ const bg = '/images/terrasa/contacts-bg.webp'
         <div class="contacts__map-frame">
           <iframe
             title="Карта"
-            src="https://yandex.ru/map-widget/v1/?text=Иваново%20ресторан%20ТЕРРАСА%20площадь%20Пушкина%202&z=17"
+            :src="contacts.mapEmbed"
             loading="lazy"
             allowfullscreen
           ></iframe>

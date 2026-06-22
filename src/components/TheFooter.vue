@@ -1,4 +1,6 @@
 <script setup>
+import { contacts, telHref } from '../lib/contacts.js'
+
 const year = new Date().getFullYear()
 </script>
 
@@ -16,15 +18,15 @@ const year = new Date().getFullYear()
       <div class="footer__cols">
         <div class="footer__col">
           <span class="footer__h">Контакты</span>
-          <a href="tel:+79030177620">+7 (903) 017-76-20</a>
-          <a href="tel:+79060699107">+7 (906) 069-91-07</a>
-          <a href="mailto:zastol2026@yandex.ru">zastol2026@yandex.ru</a>
-          <span>Иваново, пл.&nbsp;Пушкина, 2 — здание драмтеатра</span>
+          <a :href="telHref(contacts.phonePrimary)">{{ contacts.phonePrimary }}</a>
+          <a v-if="contacts.phoneSecondary" :href="telHref(contacts.phoneSecondary)">{{ contacts.phoneSecondary }}</a>
+          <a :href="`mailto:${contacts.email}`">{{ contacts.email }}</a>
+          <span>{{ contacts.addressShort }}</span>
         </div>
         <div class="footer__col">
           <span class="footer__h">Часы</span>
-          <span>Ежедневно</span>
-          <span>12:00–00:00</span>
+          <span>{{ contacts.hoursDays }}</span>
+          <span>{{ contacts.hoursTime }}</span>
         </div>
         <div class="footer__col">
           <span class="footer__h">Ссылки</span>
@@ -34,9 +36,10 @@ const year = new Date().getFullYear()
         </div>
         <div class="footer__col">
           <span class="footer__h">Соцсети</span>
-          <a href="#" target="_blank" rel="noopener">Telegram</a>
-          <a href="#" target="_blank" rel="noopener">VK</a>
-          <a href="#" target="_blank" rel="noopener">YouTube</a>
+          <a v-if="contacts.telegram" :href="contacts.telegram" target="_blank" rel="noopener">Telegram</a>
+          <a v-if="contacts.vk" :href="contacts.vk" target="_blank" rel="noopener">VK</a>
+          <a v-if="contacts.youtube" :href="contacts.youtube" target="_blank" rel="noopener">YouTube</a>
+          <span v-if="!contacts.telegram && !contacts.vk && !contacts.youtube" class="footer__soon">Скоро</span>
         </div>
       </div>
     </div>

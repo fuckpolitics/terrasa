@@ -1,6 +1,7 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount } from 'vue'
 import { openBooking } from '../lib/booking.js'
+import { contacts, telHref } from '../lib/contacts.js'
 
 const scrolled = ref(false)
 const open = ref(false)
@@ -60,7 +61,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
       </nav>
 
       <div class="nav__actions">
-        <a class="nav__phone" href="tel:+79030177620">+7 (903) 017-76-20</a>
+        <a class="nav__phone" :href="telHref(contacts.phonePrimary)">{{ contacts.phonePrimary }}</a>
         <button class="btn btn--small" @click="book">
           Забронировать
           <span class="arrow">→</span>
@@ -90,7 +91,7 @@ onBeforeUnmount(() => window.removeEventListener('scroll', onScroll))
         </a>
       </nav>
       <div class="nav__mobile-foot">
-        <a href="tel:+79030177620">+7 (903) 017-76-20</a>
+        <a :href="telHref(contacts.phonePrimary)">{{ contacts.phonePrimary }}</a>
         <button class="btn" @click="book">Забронировать стол</button>
       </div>
     </div>

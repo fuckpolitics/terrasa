@@ -1,5 +1,61 @@
-# Vue 3 + Vite
+# ТЕРРАСА — сайт ресторана
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Одностраничный сайт ресторана «ТЕРРАСА» (Иваново). Стек: **Vue 3 + Vite**, хостинг — **GitHub Pages** (статика, без сервера и базы данных). Деплой автоматический: любой коммит в ветку `main` пересобирает и публикует сайт.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+Управление контентом — через **Sveltia CMS**: визуальная админка на `/admin`, которая сохраняет изменения прямо в репозиторий (всё версионируется в Git, любую правку можно откатить). Вход через GitHub — без собственного OAuth-прокси.
+
+## Команды
+
+```bash
+npm install      # установить зависимости
+npm run dev      # локальная разработка
+npm run build    # production-сборка в dist/
+npm run preview  # предпросмотр production-сборки
+```
+
+## Где лежит контент
+
+Весь редактируемый текст вынесен в JSON-файлы — код и контент разделены:
+
+| Файл | Что внутри |
+| --- | --- |
+| `src/content/menu.json` | Меню: разделы, блюда, цены |
+| `src/content/events.json` | События и форматы банкетов |
+| `src/content/site.json` | Контакты, часы, соцсети и тексты секций (главный экран, о ресторане, атмосфера, шеф, бронирование) |
+
+Контакты (`site.json → contacts`) — единый источник: телефон/почта/часы подставляются сразу в шапку, подвал, секцию контактов и форму заявки. Менять в одном месте.
+
+Картинки лежат в `public/images/terrasa/`. Загруженные через CMS файлы попадают в `public/images/uploads/`.
+
+---
+
+## CMS: как устроена и как настраивается
+
+Админка: **https://terrasa-iv.ru/admin**
+
+Движок — **Sveltia CMS**. Он работает с GitHub напрямую и берёт авторизацию на себя, поэтому **свой OAuth-прокси не нужен** — настраивать почти нечего.
+
+### Что уже настроено
+
+- `public/admin/index.html` — загрузчик Sveltia CMS.
+- `public/admin/config.yml` — формы на русском (Меню, События, Контакты и тексты), репозиторий и ветка уже прописаны.
+
+После публикации в `main` админка доступна на `/admin`, вход — кнопкой **«Sign in with GitHub»**.
+
+### Кто может редактировать
+
+Право входа в CMS = право на запись в репозиторий `fuckpolitics/terrasa`. Чтобы дать доступ сотруднику — добавьте его как collaborator в репозиторий на GitHub (**Settings → Collaborators**). Достаточно обычного аккаунта GitHub, специальных знаний не требуется.
+
+### Если захотите вернуться на Decap CMS
+
+Sveltia использует тот же `config.yml`. Для перехода на Decap понадобится свой OAuth-прокси (например, Cloudflare Worker [sterlingwes/decap-proxy](https://github.com/sterlingwes/decap-proxy)); в `config.yml` добавляются `base_url` и `auth_endpoint`, а в `index.html` подключается `decap-cms.js`.
+
+---
+
+## Деплой
+
+`.github/workflows/deploy.yml` собирает проект и публикует `dist/` на GitHub Pages при каждом пуше в `main`. Изменения через CMS = коммит в `main` = автопубликация (обычно ~1 минута).
+
+## Инструкция для редактора
+
+См. [`docs/Управление-сайтом.md`](docs/Управление-сайтом.md) — пошагово, простым языком, без терминов.

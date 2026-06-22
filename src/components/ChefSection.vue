@@ -1,7 +1,9 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
+import site from '../content/site.json'
 
 const bg = '/images/terrasa/chef-bg.webp'
+const chef = site.chef
 </script>
 
 <template>
@@ -10,36 +12,17 @@ const bg = '/images/terrasa/chef-bg.webp'
 
     <div class="container section-inner chef__inner">
       <div class="chef__text">
-        <span class="eyebrow reveal">Шеф-повар</span>
-        <h2 class="section-title reveal reveal--delay-1">
-          Кухня<br /><em>от шефа</em>
-        </h2>
+        <span class="eyebrow reveal">{{ chef.eyebrow }}</span>
+        <h2 class="section-title reveal reveal--delay-1" v-html="chef.title"></h2>
 
         <div class="chef__bio reveal reveal--delay-2 muted">
-          <p>
-            Наш шеф-повар больше 20&nbsp;лет на&nbsp;кухне и&nbsp;за&nbsp;это
-            время прошёл путь через десятки команд, запусков и&nbsp;сильных
-            ресторанных историй.
-          </p>
-          <p>
-            За&nbsp;его плечами больше 10&nbsp;успешных проектов, а&nbsp;теперь
-            его кухня стала частью «ТЕРРАСЫ»&nbsp;— с&nbsp;сезонными блюдами,
-            понятным вкусом и&nbsp;вниманием к&nbsp;деталям.
-          </p>
+          <p v-for="(p, i) in chef.paragraphs" :key="i">{{ p }}</p>
         </div>
 
         <div class="chef__awards reveal reveal--delay-3">
-          <div class="chef__award">
-            <span class="chef__award-num">20+</span>
-            <span class="chef__award-text">лет<br />на&nbsp;кухне</span>
-          </div>
-          <div class="chef__award">
-            <span class="chef__award-num">10+</span>
-            <span class="chef__award-text">успешных<br />проектов</span>
-          </div>
-          <div class="chef__award">
-            <span class="chef__award-num">3</span>
-            <span class="chef__award-text">блюда<br />от&nbsp;шефа</span>
+          <div v-for="(a, i) in chef.awards" :key="i" class="chef__award">
+            <span class="chef__award-num">{{ a.num }}</span>
+            <span class="chef__award-text" v-html="a.text"></span>
           </div>
         </div>
       </div>

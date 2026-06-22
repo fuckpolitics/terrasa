@@ -1,8 +1,10 @@
 <script setup>
 import ParallaxBg from './ParallaxBg.vue'
+import site from '../content/site.json'
 
 const aboutImg = '/images/terrasa/about-bg.webp'
 const sideImg = '/images/terrasa/about-side.webp'
+const about = site.about
 </script>
 
 <template>
@@ -11,30 +13,18 @@ const sideImg = '/images/terrasa/about-side.webp'
 
     <div class="container about__inner section-inner">
       <div class="about__text">
-        <span class="eyebrow reveal">О ресторане</span>
+        <span class="eyebrow reveal">{{ about.eyebrow }}</span>
 
-        <h2 class="section-title reveal reveal--delay-1">
-          О ресторане<br />
-          <em>ТЕРРАСА</em>
-        </h2>
+        <h2 class="section-title reveal reveal--delay-1" v-html="about.title"></h2>
 
         <div class="about__copy reveal reveal--delay-2 muted">
-          <p>
-            «ТЕРРАСА»&nbsp;— это не&nbsp;просто ресторан. Это место в&nbsp;самом
-            сердце города, куда приходят не&nbsp;поесть, а&nbsp;прожить вечер.
-            Атмосфера, пространство, ощущение&nbsp;— вот настоящий продукт.
-          </p>
-          <p>
-            Меню живёт вместе с&nbsp;сезоном: каждый сезон мы&nbsp;обновляем
-            основные блюда, сохраняя любимые позиции и&nbsp;общий характер кухни.
-          </p>
+          <p v-for="(p, i) in about.paragraphs" :key="i">{{ p }}</p>
         </div>
 
         <ul class="about__list reveal reveal--delay-3">
-          <li><span>01</span>Работаем ежедневно с&nbsp;12:00 до&nbsp;00:00</li>
-          <li><span>02</span>Закрытые мероприятия до&nbsp;80&nbsp;персон</li>
-          <li><span>03</span>Сезонные обновления основных блюд</li>
-          <li><span>04</span>Главный зал, терраса и&nbsp;банкетное пространство</li>
+          <li v-for="(item, i) in about.list" :key="i">
+            <span>{{ String(i + 1).padStart(2, '0') }}</span>{{ item }}
+          </li>
         </ul>
       </div>
 
@@ -43,12 +33,9 @@ const sideImg = '/images/terrasa/about-side.webp'
           <div class="about__photo-frame"></div>
         </div>
         <div class="about__quote">
-          <span class="ornament">премьера&nbsp;2026</span>
-          <p>
-            «ТЕРРАСА»&nbsp;— это вечер, который вы&nbsp;запомните
-            не&nbsp;меньше, чем вкус любимого блюда.
-          </p>
-          <span class="about__quote-author">— Команда «ТЕРРАСЫ»</span>
+          <span class="ornament">{{ about.quoteEyebrow }}</span>
+          <p>{{ about.quote }}</p>
+          <span class="about__quote-author">{{ about.quoteAuthor }}</span>
         </div>
       </div>
     </div>
