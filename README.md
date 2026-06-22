@@ -2,7 +2,7 @@
 
 Одностраничный сайт ресторана «ТЕРРАСА» (Иваново). Стек: **Vue 3 + Vite**, хостинг — **GitHub Pages** (статика, без сервера и базы данных). Деплой автоматический: любой коммит в ветку `main` пересобирает и публикует сайт.
 
-Управление контентом — через **Sveltia CMS**: визуальная админка на `/admin`, которая сохраняет изменения прямо в репозиторий (всё версионируется в Git, любую правку можно откатить). Вход через GitHub — без собственного OAuth-прокси.
+Управление контентом — через **Sveltia CMS**: визуальная админка на `/admin`, которая сохраняет изменения прямо в репозиторий (всё версионируется в Git, любую правку можно откатить). Вход — по токену доступа GitHub (без серверов и OAuth-прокси).
 
 ## Команды
 
@@ -33,22 +33,29 @@ npm run preview  # предпросмотр production-сборки
 
 Админка: **https://terrasa-iv.ru/admin**
 
-Движок — **Sveltia CMS**. Он работает с GitHub напрямую и берёт авторизацию на себя, поэтому **свой OAuth-прокси не нужен** — настраивать почти нечего.
+Движок — **Sveltia CMS**. Вход — по **токену доступа GitHub** (Personal Access Token): не нужны ни сервер, ни OAuth-прокси, ни Cloudflare. Это самый простой бесплатный способ.
 
 ### Что уже настроено
 
 - `public/admin/index.html` — загрузчик Sveltia CMS.
-- `public/admin/config.yml` — формы на русском (Меню, События, Контакты и тексты), репозиторий и ветка уже прописаны.
+- `public/admin/config.yml` — формы на русском (Меню, События, Контакты и тексты); включён вход по токену (`auth_methods: [token]`).
 
-После публикации в `main` админка доступна на `/admin`, вход — кнопкой **«Sign in with GitHub»**.
+### Как выдать доступ (делается один раз)
 
-### Кто может редактировать
+1. Зайдите на GitHub под аккаунтом-владельцем репозитория (`fuckpolitics`).
+2. **Settings → Developer settings → Personal access tokens → Fine-grained tokens → Generate new token.**
+   - **Token name:** `Terrasa CMS`
+   - **Expiration:** на год (или «No expiration», если не хотите продлевать).
+   - **Repository access:** Only select repositories → **terrasa**.
+   - **Permissions → Repository permissions → Contents:** **Read and write**.
+   - Нажмите Generate и **скопируйте токен** (он показывается один раз).
+3. Передайте этот токен 2–3 редакторам. При входе в `/admin` они вставляют его — браузер запоминает.
 
-Право входа в CMS = право на запись в репозиторий `fuckpolitics/terrasa`. Чтобы дать доступ сотруднику — добавьте его как collaborator в репозиторий на GitHub (**Settings → Collaborators**). Достаточно обычного аккаунта GitHub, специальных знаний не требуется.
+Один и тот же токен можно дать всем редакторам (общий доступ). Чтобы отозвать доступ — удалите токен на GitHub и создайте новый. Токен ограничен только этим репозиторием, ничего другого им сделать нельзя.
 
-### Если захотите вернуться на Decap CMS
+### Если позже захотите кнопку «Войти через GitHub» (личные логины)
 
-Sveltia использует тот же `config.yml`. Для перехода на Decap понадобится свой OAuth-прокси (например, Cloudflare Worker [sterlingwes/decap-proxy](https://github.com/sterlingwes/decap-proxy)); в `config.yml` добавляются `base_url` и `auth_endpoint`, а в `index.html` подключается `decap-cms.js`.
+Понадобится бесплатный OAuth-авторизатор на Cloudflare Workers ([sveltia/sveltia-cms-auth](https://github.com/sveltia/sveltia-cms-auth)): развернуть воркер, создать GitHub OAuth App, прописать его адрес в `base_url` и заменить `auth_methods` на `[oauth]`. Тогда каждый редактор входит под своим GitHub-аккаунтом (нужен доступ collaborator к репозиторию).
 
 ---
 

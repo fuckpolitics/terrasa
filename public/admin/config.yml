@@ -2,7 +2,9 @@ backend:
   name: github
   repo: fuckpolitics/terrasa
   branch: main
-  # Вход через GitHub обеспечивает Sveltia CMS — отдельный OAuth-прокси не нужен.
+  # Вход по токену доступа (Personal Access Token) — без OAuth-прокси и серверов.
+  # Как создать токен и войти — см. docs/Управление-сайтом.md.
+  auth_methods: [token]
 
 # Язык интерфейса админки
 locale: ru
