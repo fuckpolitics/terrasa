@@ -1,8 +1,9 @@
 <script setup>
+import site from '../content/site.json'
 import ParallaxBg from './ParallaxBg.vue'
 import { contacts, telHref } from '../lib/contacts.js'
 
-const bg = '/images/terrasa/contacts-bg.webp'
+const bg = site.images.contacts
 </script>
 
 <template>

@@ -5,10 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="robots" content="noindex" />
     <title>ТЕРРАСА — управление сайтом</title>
+    <link rel="stylesheet" href="/admin/admin.css" />
   </head>
   <body>
-    <!-- Sveltia CMS — визуальный редактор контента сайта.
-         Совместим с config.yml от Decap, вход через GitHub без своего OAuth-прокси. -->
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js" type="module"></script>
+    <header class="terrasa-header">
+      <div class="terrasa-brand">
+        <img src="/admin/brand.svg" alt="" width="42" height="42" />
+        <div><strong>ТЕРРАСА</strong><span>Управление сайтом</span></div>
+      </div>
+      <div class="terrasa-header-note">Ваш ресторан. Ваши истории.</div>
+      <nav aria-label="Помощь редактору">
+        <details class="terrasa-help">
+          <summary>Как редактировать</summary>
+          <div class="terrasa-help-card">
+            <h2>Всё нужное — под рукой</h2>
+            <p><b>События.</b> Добавляйте афиши, включайте сезонное предложение и обновляйте условия банкетов.</p>
+            <p><b>Фотографии.</b> Откройте настройки сайта: фоны — в «Фотографиях разделов», интерьер — в «Атмосфере».</p>
+            <p><b>Сохранение.</b> После публикации сайт обновится через 1–2 минуты. Сезонное предложение скрывается вручную.</p>
+          </div>
+        </details>
+        <a href="/" target="_blank" rel="noopener">Открыть сайт <span aria-hidden="true">↗</span></a>
+      </nav>
+    </header>
+    <div id="nc-root"></div>
+    <!-- Pin the version whose native controls and preview API are verified with this theme. -->
+    <script src="https://unpkg.com/@sveltia/cms@0.232.0/dist/sveltia-cms.js" defer></script>
+    <script src="/admin/previews.js" defer></script>
   </body>
 </html>

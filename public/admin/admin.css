@@ -1,0 +1,111 @@
+/* Sveltia 0.232.0: theme tokens and semantic field hooks; no generated Svelte selectors. */
+html:root {
+  --terrasa-header-height: 82px;
+  --sui-base-hue: 38;
+  --sui-font-family-default: 'Source Sans 3', system-ui, sans-serif;
+  --sui-heading-font-weight: 600;
+  --sui-control-medium-border-radius: 8px;
+  --sui-control-small-border-radius: 6px;
+  --sui-button-medium-border-radius: 8px;
+  --sui-button-small-border-radius: 6px;
+  --sui-textbox-border-radius: 8px;
+  --sui-tree-item-border-radius: 8px;
+  --sui-primary-accent-color: #795b27;
+  --sui-primary-accent-color-dark: #60451b;
+  --sui-primary-accent-color-light: #92713a;
+  --sui-primary-accent-color-text: #795b27;
+  --sui-primary-accent-color-inverted: #fff;
+  --sui-primary-accent-color-translucent: #b18c4c66;
+  --sui-primary-accent-color-translucent-light: #b18c4c33;
+}
+html:root:not([data-theme='dark']) {
+  --sui-foreground-color-1-hsl: 95 10% 13%;
+  --sui-foreground-color-2-hsl: 90 8% 23%;
+  --sui-foreground-color-3-hsl: 70 5% 36%;
+  --sui-foreground-color-4-hsl: 65 4% 44%;
+  --sui-background-color-1-hsl: 40 33% 99%;
+  --sui-background-color-2-hsl: 40 24% 97%;
+  --sui-background-color-3-hsl: 40 20% 94%;
+  --sui-background-color-4-hsl: 40 20% 91%;
+  --sui-background-color-5-hsl: 40 20% 83%;
+  --sui-border-color-1-hsl: 40 12% 65%;
+  --sui-border-color-2-hsl: 40 18% 80%;
+  --sui-border-color-3-hsl: 40 18% 87%;
+}
+html:root[data-theme='dark'] {
+  --sui-primary-accent-color: #d6b675;
+  --sui-primary-accent-color-dark: #c4a261;
+  --sui-primary-accent-color-light: #e7c98f;
+  --sui-primary-accent-color-text: #e7c98f;
+  --sui-primary-accent-color-inverted: #242821;
+}
+body { margin: 0; }
+.terrasa-header {
+  position: fixed;
+  inset: 0 0 auto;
+  height: var(--terrasa-header-height);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 28px;
+  padding: 0 28px;
+  background: #242821;
+  color: #f7f1e5;
+  border-bottom: 1px solid #b18c4c;
+  font: 14px/1.5 'Source Sans 3', system-ui, sans-serif;
+  z-index: 10;
+}
+.terrasa-brand { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+.terrasa-brand strong { display: block; font: 25px/1.1 Georgia, serif; letter-spacing: .09em; }
+.terrasa-brand span { display: block; font-size: 11px; color: #cfbfa2; letter-spacing: .08em; margin-top: 5px; }
+.terrasa-header-note { margin-right: auto; padding-left: 28px; border-left: 1px solid #ffffff26; color: #d8cdb7; font: italic 18px Georgia, serif; }
+.terrasa-header nav { display: flex; align-items: center; gap: 24px; }
+.terrasa-header a { color: #ecd4a0; text-decoration: none; white-space: nowrap; }
+.terrasa-header a span { margin-left: 12px; }
+.terrasa-header a:hover { color: white; }
+.terrasa-header a:focus-visible, .terrasa-help summary:focus-visible { outline: 2px solid #ecd4a0; outline-offset: 5px; }
+.terrasa-help { position: relative; }
+.terrasa-help summary { cursor: pointer; color: #e7dfcf; }
+.terrasa-help-card { position: absolute; right: 0; top: 40px; width: 340px; padding: 24px; border: 1px solid #b9a780; border-radius: 12px; background: #fffaf0; color: #30382d; box-shadow: 0 12px 50px #0004; z-index: 100; }
+.terrasa-help-card h2 { font: 23px Georgia, serif; margin: 0 0 18px; }
+.terrasa-help-card p { margin: 14px 0 0; }
+#nc-root { position: fixed; inset: var(--terrasa-header-height) 0 0; }
+#nc-root > .app-shell { position: absolute; }
+#nc-root .content-editor { top: var(--terrasa-header-height); height: calc(100% - var(--terrasa-header-height)); }
+#nc-root .toolbar-wrapper > .toolbar { border-bottom: 1px solid var(--sui-secondary-border-color); }
+#nc-root .primary-sidebar { padding: 12px 4px; }
+#nc-root .primary-sidebar [role='option'] { min-height: 44px; }
+#nc-root .content-editor > .toolbar { background: var(--sui-content-background-color); padding-block: 8px; border-bottom: 1px solid var(--sui-secondary-border-color); }
+#nc-root .content-editor > .toolbar h2 { font-size: 17px; }
+#nc-root section.field > header h4 { font-weight: 600; }
+#nc-root section.field[data-field-type='object']:not([data-key-path*='.']),
+#nc-root section.field[data-field-type='list']:not([data-key-path*='.']) {
+  border: 1px solid var(--sui-secondary-border-color);
+  border-radius: 12px;
+  padding: 16px;
+  background: var(--sui-content-background-color);
+  box-shadow: 0 4px 16px #29251c04;
+}
+#nc-root section.field[data-key-path='seasonal'] > header,
+#nc-root section.field[data-key-path='weekly'] > header,
+#nc-root section.field[data-key-path='images'] > header { padding-bottom: 12px; margin-bottom: 12px; border-bottom: 1px solid var(--sui-secondary-border-color); }
+#nc-root section.field[data-key-path='seasonal'] > header h4::before { content: '01 / '; color: var(--sui-primary-accent-color-text); }
+#nc-root section.field[data-key-path='weekly'] > header h4::before { content: '02 / '; color: var(--sui-primary-accent-color-text); }
+#nc-root section.field[data-key-path='images'] > header h4::before { content: 'ФОТО / '; font-size: 11px; letter-spacing: .1em; color: var(--sui-primary-accent-color-text); }
+#nc-root section.field textarea { line-height: 1.65; }
+#nc-root .sui.button.primary { font-weight: 600; box-shadow: 0 2px 5px #29251c10; }
+@media (max-width: 1000px) { .terrasa-header-note { display: none; } }
+@media (max-width: 600px) {
+  html:root { --terrasa-header-height: 70px; }
+  .terrasa-header { padding: 0 14px; gap: 12px; }
+  .terrasa-brand { gap: 6px; }
+  .terrasa-brand img { width: 34px; height: 34px; }
+  .terrasa-brand strong { font-size: 19px; }
+  .terrasa-brand span { font-size: 9px; }
+  .terrasa-header nav { gap: 12px; font-size: 12px; }
+  .terrasa-header nav > a { display: none; }
+  .terrasa-help-card { position: fixed; top: 64px; left: 12px; right: 12px; width: auto; }
+  #nc-root section.field[data-field-type='object']:not([data-key-path*='.']),
+  #nc-root section.field[data-field-type='list']:not([data-key-path*='.']) { padding: 10px; }
+}

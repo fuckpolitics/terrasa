@@ -1,9 +1,10 @@
 <script setup>
+import site from '../content/site.json'
 import { ref, computed } from 'vue'
 import ParallaxBg from './ParallaxBg.vue'
 import menu from '../content/menu.json'
 
-const menuImg = '/images/terrasa/menu-bg.webp'
+const menuImg = site.images.menu
 
 // Показываем только непустые разделы, чтобы случайно пустая категория
 // из CMS не ломала вкладки.

@@ -2,8 +2,8 @@
 import ParallaxBg from './ParallaxBg.vue'
 import site from '../content/site.json'
 
-const aboutImg = '/images/terrasa/about-bg.webp'
-const sideImg = '/images/terrasa/about-side.webp'
+const aboutImg = site.images.about
+const sideImg = site.images.aboutSide
 const about = site.about
 </script>
 
@@ -29,7 +29,7 @@ const about = site.about
       </div>
 
       <div class="about__visual reveal--scale reveal reveal--delay-2">
-        <div class="about__photo" :style="{ backgroundImage: `url(${sideImg})` }">
+        <div class="about__photo" :style="{ backgroundImage: `url(${JSON.stringify(sideImg)})` }">
           <div class="about__photo-frame"></div>
         </div>
         <div class="about__quote">

@@ -1,13 +1,16 @@
 <script setup>
+import site from '../content/site.json'
 import { ref } from 'vue'
 import ParallaxBg from './ParallaxBg.vue'
 import CallbackModal from './CallbackModal.vue'
+import EventCard from './EventCard.vue'
 import eventsData from '../content/events.json'
 
-const bg = '/images/terrasa/events-bg.webp'
+const bg = site.images.events
 
 const events = eventsData
-const feature = eventsData.feature
+const weekly = (eventsData.weekly || []).filter((event) => event.show && event.title?.trim())
+const seasonal = eventsData.seasonal
 const formats = eventsData.formats
 const strip = eventsData.strip
 
@@ -33,28 +36,17 @@ function discuss(topic) {
         <p class="events__lead reveal reveal--delay-2 muted">{{ events.lead }}</p>
       </div>
 
-      <div v-if="feature && feature.show" class="events__feature reveal">
-        <a
-          class="events__feature-media"
-          href="#"
-          aria-label="Забронировать стол на ближайшее событие"
-          @click.prevent="discuss(feature.bookingTopic)"
-        >
-          <img
-            :src="feature.poster"
-            :alt="feature.posterAlt"
-            loading="lazy"
-          />
-        </a>
-        <div class="events__feature-text">
-          <span class="eyebrow">{{ feature.dateLabel }}</span>
-          <h3 class="events__feature-title" v-html="feature.title"></h3>
-          <p class="muted">{{ feature.text }}</p>
-          <button class="btn" @click="discuss(feature.bookingTopic)">
-            Забронировать стол <span class="arrow">→</span>
-          </button>
+      <section v-if="seasonal?.show && seasonal.title?.trim()" class="events__group" aria-labelledby="seasonal-heading">
+        <h3 id="seasonal-heading" class="events__subheading reveal">{{ events.seasonalHeading }}</h3>
+        <EventCard :event="seasonal" action-label="Обсудить предложение" @discuss="discuss" />
+      </section>
+
+      <section v-if="weekly.length" class="events__group" aria-labelledby="weekly-heading">
+        <h3 id="weekly-heading" class="events__subheading reveal">{{ events.weeklyHeading }}</h3>
+        <div class="events__posters" :class="{ 'events__posters--multiple': weekly.length > 1 }">
+          <EventCard v-for="(event, i) in weekly" :key="i" :event="event" :compact="weekly.length > 1" @discuss="discuss" />
         </div>
-      </div>
+      </section>
 
       <div class="events__grid">
         <article
@@ -106,51 +98,24 @@ function discuss(topic) {
   justify-self: end;
 }
 
-.events__feature {
-  display: grid;
-  grid-template-columns: minmax(260px, 360px) 1fr;
-  gap: clamp(32px, 5vw, 64px);
-  align-items: center;
+.events__group {
   margin-bottom: 64px;
-  padding: clamp(24px, 4vw, 48px);
-  background: rgba(201, 169, 110, 0.06);
-  border: 1px solid rgba(201, 169, 110, 0.32);
-  border-radius: 6px;
 }
 
-.events__feature-media {
-  display: block;
-  border-radius: 6px;
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-  box-shadow: 0 26px 60px rgba(0, 0, 0, 0.5);
-  transition: transform 0.5s var(--ease);
-}
-
-.events__feature-media:hover {
-  transform: translateY(-5px);
-}
-
-.events__feature-media img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.events__feature-title {
+.events__subheading {
   font-family: var(--serif);
-  font-size: clamp(30px, 3.4vw, 46px);
+  font-size: clamp(28px, 3vw, 40px);
   font-weight: 400;
-  line-height: 1.05;
-  margin: 18px 0 20px;
+  margin-bottom: 28px;
 }
 
-.events__feature-text p {
-  color: var(--ink-dim);
-  font-size: 16px;
-  line-height: 1.7;
-  max-width: 540px;
-  margin-bottom: 30px;
+.events__posters {
+  display: grid;
+  gap: 24px;
+}
+
+.events__posters--multiple {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .events__grid {
@@ -306,18 +271,8 @@ function discuss(topic) {
   .events__lead {
     justify-self: start;
   }
-  .events__feature {
+  .events__posters--multiple {
     grid-template-columns: 1fr;
-    justify-items: center;
-    text-align: center;
-    gap: 28px;
-  }
-  .events__feature-media {
-    max-width: 340px;
-  }
-  .events__feature-text p {
-    margin-left: auto;
-    margin-right: auto;
   }
   .events__grid {
     grid-template-columns: 1fr;

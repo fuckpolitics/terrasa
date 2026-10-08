@@ -3,7 +3,7 @@ import ParallaxBg from './ParallaxBg.vue'
 import { WIDGET_IFRAME_URL, openBooking } from '../lib/booking.js'
 import site from '../content/site.json'
 
-const bg = '/images/terrasa/booking-bg.webp'
+const bg = site.images.booking
 const booking = site.booking
 </script>
 

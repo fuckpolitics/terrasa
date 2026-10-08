@@ -2,7 +2,7 @@
 import ParallaxBg from './ParallaxBg.vue'
 import site from '../content/site.json'
 
-const heroImg = '/images/terrasa/hero.webp'
+const heroImg = site.images.hero
 const hero = site.hero
 
 defineEmits(['book'])

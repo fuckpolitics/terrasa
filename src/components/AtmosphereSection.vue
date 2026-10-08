@@ -2,7 +2,7 @@
 import ParallaxBg from './ParallaxBg.vue'
 import site from '../content/site.json'
 
-const bg = '/images/terrasa/atmosphere-bg.webp'
+const bg = site.images.atmosphere
 
 const atmosphere = site.atmosphere
 const tiles = atmosphere.tiles
@@ -28,7 +28,7 @@ const tiles = atmosphere.tiles
           <div class="tile__media">
             <div
               class="tile__image"
-              :style="{ backgroundImage: `url(${t.img})` }"
+              :style="{ backgroundImage: `url(${JSON.stringify(t.img)})` }"
             ></div>
           </div>
           <div class="tile__caption">

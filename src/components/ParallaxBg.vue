@@ -20,7 +20,7 @@ useParallax(imgRef, { speed: props.speed })
       ref="imgRef"
       class="bg-layer__image"
       :style="{
-        backgroundImage: `url(${src})`,
+        backgroundImage: `url(${JSON.stringify(src)})`,
         backgroundPosition: position,
       }"
     ></div>

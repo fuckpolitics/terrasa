@@ -98,5 +98,16 @@
       "Закрытые мероприятия до 80 персон обсуждаются отдельно",
       "Любые предпочтения по меню — заранее, мы учтём"
     ]
+  },
+  "images": {
+    "hero": "/images/terrasa/hero.webp",
+    "about": "/images/terrasa/about-bg.webp",
+    "aboutSide": "/images/terrasa/about-side.webp",
+    "menu": "/images/terrasa/menu-bg.webp",
+    "atmosphere": "/images/terrasa/atmosphere-bg.webp",
+    "chef": "/images/terrasa/chef-bg.webp",
+    "events": "/images/terrasa/events-bg.webp",
+    "booking": "/images/terrasa/booking-bg.webp",
+    "contacts": "/images/terrasa/contacts-bg.webp"
   }
 }

@@ -2,7 +2,7 @@
 import ParallaxBg from './ParallaxBg.vue'
 import site from '../content/site.json'
 
-const bg = '/images/terrasa/chef-bg.webp'
+const bg = site.images.chef
 const chef = site.chef
 </script>
 

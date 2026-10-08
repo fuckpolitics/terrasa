@@ -8,6 +8,11 @@ backend:
 
 # Язык интерфейса админки
 locale: ru
+app_title: ТЕРРАСА · Управление сайтом
+logo:
+  src: /admin/brand.svg
+  show_in_header: false
+display_url: /
 
 # Куда складывать загруженные через CMS картинки и как на них ссылаться на сайте
 media_folder: public/images/uploads
@@ -39,6 +44,7 @@ collections:
             label: 'Разделы меню'
             label_singular: 'Раздел'
             widget: list
+            collapsed: true
             summary: '{{fields.label}}'
             fields:
               - { name: id, label: 'Код раздела (латиницей, без пробелов)', widget: string, hint: 'Например: salads. Менять не обязательно.' }
@@ -61,26 +67,47 @@ collections:
       - name: events
         label: 'События и банкеты'
         file: src/content/events.json
-        description: 'Ближайшее событие (афиша) и форматы банкетов.'
+        description: 'Сезонное предложение на месяц или два, несколько еженедельных афиш и форматы банкетов.'
         fields:
           - { name: eyebrow, label: 'Надпись над заголовком', widget: string }
           - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
           - { name: lead, label: 'Вступительный текст', widget: text }
-          - name: feature
-            label: 'Ближайшее событие (афиша)'
+          - { name: seasonalHeading, label: 'Заголовок подраздела сезонных предложений', widget: string }
+          - name: seasonal
+            label: 'Длительное предложение (например, новогодние корпоративы)'
             widget: object
+            collapsed: true
+            hint: 'Не зависит от еженедельных афиш. Остаётся на сайте, пока вы не выключите показ. Срок указывается текстом, автоматического скрытия нет.'
             fields:
-              - { name: show, label: 'Показывать блок на сайте', widget: boolean, default: true }
+              - { name: show, label: 'Показывать предложение на сайте', widget: boolean, default: false }
+              - { name: poster, label: 'Фотография или афиша', widget: image, required: false }
+              - { name: posterAlt, label: 'Описание картинки', widget: string, required: false }
+              - { name: dateLabel, label: 'Период / подпись', widget: string, required: false, hint: 'Например: Ноябрь — декабрь 2026' }
+              - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string, required: false, hint: 'Заполните заголовок, чтобы предложение появилось на сайте.' }
+              - { name: bookingTopic, label: 'Тема заявки', widget: string, required: false, hint: 'Если оставить пустым, используем заголовок предложения.' }
+              - { name: text, label: 'Описание и условия', widget: text, required: false }
+          - { name: weeklyHeading, label: 'Заголовок подраздела еженедельных мероприятий', widget: string }
+          - name: weekly
+            label: 'Еженедельные мероприятия (афиши)'
+            label_singular: 'Мероприятие'
+            widget: list
+            collapsed: true
+            required: false
+            summary: '{{fields.title}} — {{fields.dateLabel}}'
+            hint: 'Добавьте две или больше афиш. Их можно менять, переставлять и скрывать по отдельности.'
+            fields:
+              - { name: show, label: 'Показывать мероприятие на сайте', widget: boolean, default: true }
               - { name: poster, label: 'Афиша (картинка)', widget: image, required: false }
-              - { name: posterAlt, label: 'Описание картинки (для поиска)', widget: string, required: false }
-              - { name: dateLabel, label: 'Дата / подпись', widget: string, hint: 'Например: Ближайшее событие · 26 июня, пт' }
+              - { name: posterAlt, label: 'Описание картинки', widget: string, required: false }
+              - { name: dateLabel, label: 'Дата / подпись', widget: string, hint: 'Например: 9 октября, пятница · 19:00' }
               - { name: title, label: 'Заголовок события (можно <em> и <br />)', widget: string }
-              - { name: bookingTopic, label: 'Тема для заявки', widget: string, hint: 'С этим текстом придёт заявка на почту.' }
+              - { name: bookingTopic, label: 'Тема заявки', widget: string, required: false, hint: 'Если оставить пустым, используем заголовок события.' }
               - { name: text, label: 'Описание события', widget: text }
           - name: formats
             label: 'Форматы банкетов'
             label_singular: 'Формат'
             widget: list
+            collapsed: true
             summary: '{{fields.title}} — {{fields.price}}'
             fields:
               - { name: title, label: 'Название формата', widget: string }
@@ -91,6 +118,7 @@ collections:
             label: 'Цифры внизу секции'
             label_singular: 'Цифра'
             widget: list
+            collapsed: true
             summary: '{{fields.num}}'
             fields:
               - { name: num, label: 'Число', widget: string }
@@ -98,16 +126,32 @@ collections:
 
   # ── 3. Контакты и тексты ───────────────────────────────────
   - name: site
-    label: 'Контакты и тексты'
+    label: 'Контакты, тексты и фото'
     files:
       - name: contacts
-        label: 'Контакты'
+        label: 'Настройки сайта'
         file: src/content/site.json
-        description: 'Телефоны, адрес, часы работы, соцсети. Меняются сразу во всех местах сайта.'
+        description: 'Контакты, тексты и фотографии сайта. Фото интерьера — в блоке «Атмосфера», остальные фото — в блоке «Фотографии разделов».'
         fields:
+          - name: images
+            label: 'Фотографии разделов'
+            widget: object
+            collapsed: false
+            hint: 'Замените фото нужного раздела. Для фонов подходят горизонтальные фотографии. Фото интерьера в карточках меняются ниже: «Атмосфера → Плитки-пространства».'
+            fields:
+              - { name: hero, label: 'Главный экран — фон', widget: image }
+              - { name: about, label: 'О ресторане — фон', widget: image }
+              - { name: aboutSide, label: 'О ресторане — отдельная фотография', widget: image }
+              - { name: menu, label: 'Меню — фон', widget: image }
+              - { name: atmosphere, label: 'Атмосфера — фон', widget: image }
+              - { name: chef, label: 'Шеф-повар — фон', widget: image }
+              - { name: events, label: 'События — фон', widget: image }
+              - { name: booking, label: 'Бронирование — фон', widget: image }
+              - { name: contacts, label: 'Контакты — фон', widget: image }
           - name: contacts
             label: 'Контакты'
             widget: object
+            collapsed: true
             fields:
               - { name: phonePrimary, label: 'Телефон основной', widget: string, hint: 'Формат: +7 (903) 017-76-20' }
               - { name: phoneSecondary, label: 'Телефон дополнительный', widget: string, required: false }
@@ -127,6 +171,7 @@ collections:
           - label: 'Главный экран'
             name: hero
             widget: object
+            collapsed: true
             fields:
               - { name: eyebrow, label: 'Надпись сверху', widget: string }
               - { name: titleLine1, label: 'Заголовок, строка 1', widget: string }
@@ -144,6 +189,7 @@ collections:
           - label: 'О ресторане'
             name: about
             widget: object
+            collapsed: true
             fields:
               - { name: eyebrow, label: 'Надпись сверху', widget: string }
               - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
@@ -155,6 +201,7 @@ collections:
           - label: 'Атмосфера'
             name: atmosphere
             widget: object
+            collapsed: true
             fields:
               - { name: eyebrow, label: 'Надпись сверху', widget: string }
               - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
@@ -171,6 +218,7 @@ collections:
           - label: 'Шеф-повар'
             name: chef
             widget: object
+            collapsed: true
             fields:
               - { name: eyebrow, label: 'Надпись сверху', widget: string }
               - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
@@ -185,6 +233,7 @@ collections:
           - label: 'Бронирование'
             name: booking
             widget: object
+            collapsed: true
             fields:
               - { name: eyebrow, label: 'Надпись сверху', widget: string }
               - { name: title, label: 'Заголовок (можно <em> и <br />)', widget: string }
