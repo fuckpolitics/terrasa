@@ -1,4 +1,15 @@
 {
+  "images": {
+    "hero": "/images/uploads/интерьер ресторана ТЕРРАСА зал банкет.jfif",
+    "about": "/images/uploads/интерьер ресторана ТЕРРАСА зеркала.jfif",
+    "aboutSide": "/images/uploads/интерьер ресторана ТЕРРАСА моменты.jfif",
+    "menu": "/images/uploads/интерьер ресторана ТЕРРАСА зал.jfif",
+    "atmosphere": "/images/terrasa/atmosphere-bg.webp",
+    "chef": "/images/terrasa/chef-bg.webp",
+    "events": "/images/terrasa/events-bg.webp",
+    "booking": "/images/terrasa/booking-bg.webp",
+    "contacts": "/images/terrasa/contacts-bg.webp"
+  },
   "contacts": {
     "phonePrimary": "+7 (903) 017-76-20",
     "phoneSecondary": "+7 (906) 069-91-07",
@@ -24,9 +35,18 @@
     "titleLine4": "начинается вечер.",
     "lead": "«ТЕРРАСА» — это не просто ресторан. Это место в самом сердце города, куда приходят не поесть, а прожить вечер. Атмосфера, пространство, ощущение — вот настоящий продукт.",
     "stats": [
-      { "num": "2026", "label": "премьера<br />сезона" },
-      { "num": "3", "label": "блюда<br />от шефа" },
-      { "num": "80", "label": "персон<br />для закрытых событий" }
+      {
+        "num": "2026",
+        "label": "премьера<br />сезона"
+      },
+      {
+        "num": "3",
+        "label": "блюда<br />от шефа"
+      },
+      {
+        "num": "80",
+        "label": "персон<br />для закрытых событий"
+      }
     ]
   },
   "about": {
@@ -69,7 +89,7 @@
         "span": "reg"
       },
       {
-        "img": "/images/terrasa/atmosphere-music.webp",
+        "img": "/images/uploads/новый интерьер.jpg",
         "title": "Музыкальный уголок",
         "text": "Место для живой музыки, камерных вечеров и анонсов сезона.",
         "span": "wide"
@@ -84,9 +104,18 @@
       "За его плечами больше 10 успешных проектов, а теперь его кухня стала частью «ТЕРРАСЫ» — с сезонными блюдами, понятным вкусом и вниманием к деталям."
     ],
     "awards": [
-      { "num": "20+", "text": "лет<br />на кухне" },
-      { "num": "10+", "text": "успешных<br />проектов" },
-      { "num": "3", "text": "блюда<br />от шефа" }
+      {
+        "num": "20+",
+        "text": "лет<br />на кухне"
+      },
+      {
+        "num": "10+",
+        "text": "успешных<br />проектов"
+      },
+      {
+        "num": "3",
+        "text": "блюда<br />от шефа"
+      }
     ]
   },
   "booking": {
@@ -98,16 +127,5 @@
       "Закрытые мероприятия до 80 персон обсуждаются отдельно",
       "Любые предпочтения по меню — заранее, мы учтём"
     ]
-  },
-  "images": {
-    "hero": "/images/terrasa/hero.webp",
-    "about": "/images/terrasa/about-bg.webp",
-    "aboutSide": "/images/terrasa/about-side.webp",
-    "menu": "/images/terrasa/menu-bg.webp",
-    "atmosphere": "/images/terrasa/atmosphere-bg.webp",
-    "chef": "/images/terrasa/chef-bg.webp",
-    "events": "/images/terrasa/events-bg.webp",
-    "booking": "/images/terrasa/booking-bg.webp",
-    "contacts": "/images/terrasa/contacts-bg.webp"
   }
 }
